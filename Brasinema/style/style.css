@@ -17,7 +17,7 @@ a:hover{
 }
 
 .logo img{
-    width: 12vh;
+    width: 10vh;
 
 }
 
@@ -26,11 +26,11 @@ nav {
     justify-content: space-around;
     align-items: center;
     background-color: black;
-    height: 7vh;
+    height:8vh;
 }
 
 main {
-    background: url(background.jpg) no-repeat center center ;
+    background: url(background.jpg) repeat center center ;
     background-size: cover;
     height: 93vh;
 }
@@ -57,7 +57,8 @@ main {
 
 .body_main{
     margin: auto;
-    width: 85%;
+    padding: 50px;
+    width: 100%;
     height: auto;
 }
 
