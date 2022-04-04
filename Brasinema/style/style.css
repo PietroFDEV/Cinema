@@ -8,8 +8,10 @@
     padding: 0;
 }
 a{
-    color: red;
+    color: #ffd700;
     text-decoration: none;
+    font-family: fantasy;
+    font-size: 20px;
 }
 
 a:hover{
@@ -17,22 +19,28 @@ a:hover{
 }
 
 .logo img{
-    width: 12vh;
+    width: 10vh;
 
+}
+
+header{
+    background-color: black;
 }
 
 nav {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    background-color: black;
-    height: 7vh;
+    height:8vh;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 350px;
+    margin-right: 350px;
+    justify-content: space-between;
 }
 
 main {
-    background: url(background.jpg) no-repeat center center ;
+    background-image: linear-gradient(45deg, rgb(73, 73, 73), rgb(0, 0, 0));
     background-size: cover;
-    height: 93vh;
+    height: 115vh;
 }
 
 .nav-list{
@@ -56,52 +64,84 @@ main {
 /*_____________________BODY_______________________*/
 
 .body_main{
-    background-color: rgb(117, 116, 116);;
     margin: auto;
-    width: 85%;
+    padding-top: 50px;
+    width: 100%;
     height: auto;
 }
 
+
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/
 
 
-#img1{ float: right;
-    
+.movieimg{ 
+    float: right;
     color: #fff;
-    
-    
-
-
-
+    position: relative;
+    padding-left: 15px;
 }
-
-
-
 
 .principal{
-    background-color: black;
-    margin-left: 575px;
-    margin-right: 575px;
-    color: darkred;
+    color: white;
     text-align: left;
-    position: absolute;
+    position: relative;
     top: 18%;
-    font-family: sans-serif;
-    font-size: 18px;
-    
-    
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    padding: 15px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #ffd700;
+    margin-left: 350px;
+    margin-right: 350px;
+    background-color: rgb(24, 24, 24);
+}
 
-   
-    
-    
-    
-    
-    
-    
-   
+.moviecontent{
+    text-align: left;
+    font-size: 17px;
+}
+
+#txtmiranha{
+    text-align: justify;
+}
+
+.session{
+    background-color: rgb(24, 24, 24);
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 350px;
+    margin-right: 350px;
 
 }
 
+.sessao{
+    padding: 10px 15px;
+    
+}
+
+#container{
+    background-color: rgb(199, 199, 199);
+}
+
+.psala{
+    display: inline;
+}
+
+.sessiontitle{
+    color: white;
+    padding: 10px 15px;
+}
+
+.movietitle{
+    font-size: 23px;
+}
+
+.square{
+    border-style: solid;
+    border-color: rgb(24, 24, 24);
+    border-width: 1px;
+}
