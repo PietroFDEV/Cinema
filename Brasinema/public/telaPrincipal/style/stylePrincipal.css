@@ -65,6 +65,14 @@ nav {
 /*_____________________SLIDER_______________________*/
 /*_____________________SLIDER_______________________*/
 
+.sliderW1{
+    width: 90%;
+}
+
+.sliderW2{
+    width: 30%;
+}
+
 button.slick-prev.slick-arrow{
     font-size: 0px;
     border: none;
@@ -105,15 +113,13 @@ button.slick-next.slick-arrow{
     z-index: 1;
 }
 
-.slider > img{
+.sliderB > img{
     width: 75vh;
+    padding: 40px;
+    margin: 40px;
 }
 
 
-
-.sliderB img{
-    width: 100px;
-}
 
 /*_____________________SLIDER_______________________*/
 /*_____________________SLIDER_______________________*/
