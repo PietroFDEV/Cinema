@@ -44,10 +44,17 @@
 
       </main>
 
-
       <footer>
-
+        <div class="footer-div">
+            <p class="margem-p">Política de privacidade</p>
+            <div class="margem-p">
+                <!--<img class="footer-img" src="img/Logo.png">-->
+                <p>Copyright © 2022 BRASINEMA</p>
+            </div>
+            <p class="margem-p">Termos de uso</p>
+        </div>
       </footer>
+
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
@@ -62,56 +69,7 @@
           adaptiveHeight: true
         });
             
-        $('.sliderB').slick({
-            autoplay: true,
-          autoplaySpeed: 2000,
-          dots: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          responsive: [
-            {
-              breakpoint: 1240,
-              settings: { 
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-              }
-            },
-            {
-              breakpoint: 200,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-              }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-          ]
-        });
       </script>
-      
-      <footer>
-        <div class="footer-div">
-            <p class="margem-p">Política de privacidade</p>
-            <div class="margem-p">
-                <!--<img class="footer-img" src="img/Logo.png">-->
-                <p>Copyright © 2022 BRASINEMA</p>
-            </div>
-            <p class="margem-p">Termos de uso</p>
-        </div>
-    </footer>
-
 </body>
 
 </html>
