@@ -149,11 +149,14 @@ main {
 .programContent{
     margin-top: 20px;
     text-align: center;
+    display: flex;
     justify-content: space-between;
 }
 
 .programBanner{
     display: inline-block;
+    position: relative;
+
 }
 
 .bannerText{
