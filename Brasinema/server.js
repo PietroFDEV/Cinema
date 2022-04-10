@@ -24,6 +24,10 @@ app.get("/ingresso", function(req,res){
     res.sendFile(__dirname + "/public/indexCompra.html")
 })
 
+app.get("/programacao", function(req,res){
+    res.sendFile(__dirname + "/public/indexProgramacao.html")
+})
+
 
 
 //body-parser
