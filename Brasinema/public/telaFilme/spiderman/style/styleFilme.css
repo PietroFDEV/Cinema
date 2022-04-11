@@ -39,7 +39,8 @@ nav {
 
 main {
     background-size: cover;
-    height: 115vh;
+    height: 100%;
+    padding-bottom: 50px;
 }
 
 .nav-list{
@@ -115,8 +116,8 @@ body{
 }
 
 .sessao{
-    padding: 10px 15px;
-    
+    padding: 10px 20px;
+    text-align: left;
 }
 
 #container{
@@ -125,6 +126,7 @@ body{
 
 .psala{
     display: inline;
+    font-size: 20px;
 }
 
 .sessiontitle{
@@ -140,6 +142,20 @@ body{
     border-style: solid;
     border-color: rgb(24, 24, 24);
     border-width: 1px;
+}
+
+.buttonBuy{
+    margin-left: 1%;
+}
+
+.buttonStyle{
+    font-size: 20px;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(43, 43, 43);
+    padding: 3px 15px;
+    background-color: rgb(43, 43, 43);
 }
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/

@@ -65,125 +65,104 @@ nav {
 /*_____________________SLIDER_______________________*/
 /*_____________________SLIDER_______________________*/
 
-.sliderW1{
-    width: 100%;
-    margin: 0 auto;
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 66%;
+  position: relative;
+  margin: auto;
+  margin-top: 10px;
 }
 
-.sliderW2{
-    width: 50%;
-    max-width: 89%;
-    height: 20%;
-    max-height: 30%;
-    margin: 0 auto;
+/* Hide the images by default */
+.mySlides {
+  display: none;
 }
 
-button.slick-prev.slick-arrow{
-    font-size: 0px;
-    border: none;
-    height: 50px;
-    width: 50px;
-    background-color: transparent;
-    background-image: url(arrowE.png);
+#firstdiv{
+    display: block;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 45%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #494949;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+
+
+
+/*_____________________SLIDER_______________________*/
+/*_____________________SLIDER_______________________*/
+/*_____________________SLIDER_______________________*/
+/*_____________________SLIDER_______________________*/
+
+/*_____________________BODY_______________________*/
+/*_____________________BODY_______________________*/
+/*_____________________BODY_______________________*/
+/*_____________________BODY_______________________*/
+
+main{
     background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    top: 35%;
-    left: 2%;
-    z-index: 1;
-}
-
-button.slick-prev.slick-arrow:hover{
-    opacity: 0.5;
-    cursor: pointer;
-}
-
-button.slick-next.slick-arrow:hover{
-    opacity: 0.5;
-    cursor: pointer;
-}
-
-button.slick-next.slick-arrow{
-    font-size: 0px;
-    border: none;
-    height: 50px;
-    width: 50px;
-    background-color: transparent;
-    background-image: url(arrowD.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    top: 35%;
-    right: 2%;
-    z-index: 1;
-}
-
-.sliderA{
-    width: 39%;
-    height: 150%;
-    position: relative;
-    margin: auto;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-}
-
-.sliderB{
-    width: 100%;
-    height: auto;
-    position: relative;
-    margin: auto;
-    align-items: center;
-    align-content: center;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    }
-    
-        
-.sliderA > img{
-    width: 100%;
-    height: auto;
-}
-
-.sliderB > img{
-    width: 100%;
-    height: auto;
-}
-
-.slick-dots button{
-    background-color: transparent;
-    border: none;
-    background-image: url(BOLA.png);
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-}
-
-/*_____________________SLIDER_______________________*/
-/*_____________________SLIDER_______________________*/
-/*_____________________SLIDER_______________________*/
-/*_____________________SLIDER_______________________*/
-
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-
-main{background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: top center;
+    background-image: linear-gradient(45deg, rgb(73, 73, 73), rgb(0, 0, 0));
+    height: auto;
+    padding-bottom: 100px;
 } 
 
-body{
-    background-image: linear-gradient(45deg, rgb(73, 73, 73), rgb(0, 0, 0));
-}
 
 .body_main{
     margin: auto;
@@ -209,6 +188,49 @@ body{
     border-style: solid;
     border-color: rgb(24, 24, 24);
     border-width: 1px;
+}
+
+
+.programContent{
+    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.programBanner{
+    display: inline-block;
+    position: relative;
+
+}
+
+
+.imgbanner{
+    border-style: solid;
+    border-width: 0.1vh;
+    border-color: #111111;
+}
+.filmesDestaque{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 25px;
+    display: block;
+    margin-left: 17%;
+    margin-right: 17%;
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 100px;
+}
+
+.bannerText{
+    background-color: #111111;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 6px;
+    border-color: #111111;
+    color: rgb(255, 255, 255);
+    font-size: 19px;
+    font-weight: bold;
 }
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/
@@ -247,8 +269,8 @@ body{
     border-style: solid;
     border-width: 3px;
     border-color: #ffd700;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 17%;
+    margin-right: 17%;
     margin-top: 20px;
     background-color: rgb(24, 24, 24);
 }
@@ -269,7 +291,6 @@ body{
     color: #ffd700;
     background-color: black;
     justify-content: space-evenly;
-    margin-top: 40px;
 }
 
 .footer-img{
