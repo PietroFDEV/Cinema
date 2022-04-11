@@ -142,12 +142,12 @@ main {
 
 .programContentFull{
     color: white;
-    padding: 20px 40px;
+    padding: 25px 40px;
     font-size: 25px;
 }
 
 .programContent{
-    margin-top: 20px;
+    margin-top: 25px;
     text-align: center;
     display: flex;
     justify-content: space-between;
