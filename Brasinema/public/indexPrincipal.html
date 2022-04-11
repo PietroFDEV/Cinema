@@ -5,71 +5,104 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="telaPrincipal/style/stylePrincipal.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
       <title>Brasinema</title>
   </head>
 
 
   <body>
-
-    <header>
-      <nav >
-          <a class="logo" href="/home">
-              <img src="telaPrincipal/img/Logo.png">
-          </a>
-          <ul class="nav-list">
-              <li><a href="/homem-aranha">Em Cartaz</a></li>
-              <li><a href="/homem-aranha">Em Breve</a></li>
-              <li><a href="/programacao">Programação</a></li>
-          </ul>
-      </nav>
-      </header>
-
-
-      <main>
-          <ul class="sliderA">
-              <img src="telaPrincipal/img/cine1.jpg">
-              <img src="telaPrincipal/img/cine2.jpg">
-              <img src="telaPrincipal/img/cine3.jpg">
-              <img src="telaPrincipal/img/cine4.jpg">
-          </ul>
-
-          <ul class="sliderB">
-              <img src="telaPrincipal/img/sla/image1..jpg">
-              <img src="telaPrincipal/img/sla/image2..png">
-              <img src="telaPrincipal/img/sla/image3..png">
-              <img src="telaPrincipal/img/sla/image4..png">
-              <img src="telaPrincipal/img/sla/image5..png">
-              <img src="telaPrincipal/img/sla/image6..png">
-          </ul>
-
-      </main>
-
-      <footer>
-        <div class="footer-div">
-            <p class="margem-p">Política de privacidade</p>
-            <div class="margem-p">
-                <!--<img class="footer-img" src="img/Logo.png">-->
-                <p>Copyright © 2022 BRASINEMA</p>
-            </div>
-            <p class="margem-p">Termos de uso</p>
-        </div>
-      </footer>
+    <div class="fundo">
+      <header>
+        <nav >
+            <a class="logo" href="/home">
+                <img src="telaPrincipal/img/Logo.png">
+            </a>
+            <ul class="nav-list">
+                <li><a href="/homem-aranha">Em Cartaz</a></li>
+                <li><a href="/homem-aranha">Em Breve</a></li>
+                <li><a href="/homem-aranha">Programação</a></li>
+            </ul>
+        </nav>
+        </header>
 
 
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-      <script type="text/javascript" src="telaPrincipal/script/events.js"></script>
-      <script type="text/javascript">
+        <main>
+          <div class="sliderW1">
+            <ul class="sliderA">
+                <img src="telaPrincipal/img/cine1.jpg">
+                <img src="telaPrincipal/img/cine2.jpg">
+                <img src="telaPrincipal/img/cine3.jpg">
+                <img src="telaPrincipal/img/cine4.jpg">
+            </ul>
+          </div>
+          <div class="sliderW2">
+            <ul class="sliderB">
+                <img src="telaPrincipal/img/sla/image1.jpg">
+                <img src="telaPrincipal/img/sla/image2.jpg">
+                <img src="telaPrincipal/img/sla/image3.jpg">
+                <img src="telaPrincipal/img/sla/image4.jpg">
+                <img src="telaPrincipal/img/sla/image5.jpg">
+                <img src="telaPrincipal/img/sla/image6.jpg">
+            </ul>
+          </div>
 
-        $('.sliderA').slick({
-          dots: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          adaptiveHeight: true
-        });
-            
-      </script>
+        </main>
+
+        <footer>
+          <div class="footer-div">
+              <p class="margem-p">Política de privacidade</p>
+              <div class="margem-p">
+                  <!--<img class="footer-img" src="img/Logo.png">-->
+                  <p>Copyright © 2022 BRASINEMA</p>
+              </div>
+              <p class="margem-p">Termos de uso</p>
+          </div>
+        </footer>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+        <script type="text/javascript" src="telaPrincipal/script/events.js"></script>
+        <script type="text/javascript">
+
+          $('.sliderA').slick({
+            autoplay: true,
+            dots: true,
+            slidesToShow: 1,
+            adaptiveHeight: true
+          });
+
+          $('.sliderB').slick({
+            autoplay: true,
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 2,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+              
+        </script>
+      </div>
 </body>
 
 </html>
