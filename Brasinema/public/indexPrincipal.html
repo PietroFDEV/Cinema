@@ -5,7 +5,9 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="telaPrincipal/style/stylePrincipal.css">
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+      <script src="telaPrincipal/script/events.js"></script>
       <title>Brasinema</title>
   </head>
 
@@ -27,24 +29,72 @@
 
 
         <main>
-          <div class="sliderW1">
-            <ul class="sliderA">
-                <img src="telaPrincipal/img/cine1.jpg">
-                <img src="telaPrincipal/img/cine2.jpg">
-                <img src="telaPrincipal/img/cine3.jpg">
-                <img src="telaPrincipal/img/cine4.jpg">
-            </ul>
+
+          <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fade" id="firstdiv">
+              <img src="telaPrincipal/img/cine2cut.jpg" style="width:100%">
+            </div>
+          
+            <div class="mySlides fade">
+              <img src="telaPrincipal/img/cine3cut.jpg" style="width:100%">
+            </div>
+          
+            <div class="mySlides fade">
+              <img src="telaPrincipal/img/cine4cut.jpg" style="width:100%">
+            </div>
+          
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
           </div>
-          <div class="sliderW2">
-            <ul class="sliderB">
-                <img src="telaPrincipal/img/sla/image1.jpg">
-                <img src="telaPrincipal/img/sla/image2.jpg">
-                <img src="telaPrincipal/img/sla/image3.jpg">
-                <img src="telaPrincipal/img/sla/image4.jpg">
-                <img src="telaPrincipal/img/sla/image5.jpg">
-                <img src="telaPrincipal/img/sla/image6.jpg">
-            </ul>
+          <br>
+          
+          <!-- The dots/circles -->
+          <div style="text-align:center">
+            <span class="dot" id="firstdot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
           </div>
+
+          <div class="filmesDestaque">
+            <h2>Filmes em Destaque</h2>
+
+            <div class="programContent">
+
+              <div class="programBanner">
+                  <div class="bannerImg bannerText">
+                      <img src="telaProgramacao/img/spiderman.jpg" class="imgbanner" width="270px" onclick="clickSpiderman()">
+                      <p>Spider-Man: No Way Home</p>
+                  </div>
+              </div>
+
+              <div class="programBanner">
+                  <div class="bannerImg bannerText">
+                      <img src="telaProgramacao/img/spiderman.jpg" class="imgbanner" width="270px" onclick="clickSpiderman()">
+                      <p>Spider-Man: No Way Home</p>
+                  </div>
+              </div>
+
+              <div class="programBanner">
+                  <div class="bannerImg bannerText">
+                      <img src="telaProgramacao/img/image1..jpg" class="imgbanner" width="270px" onclick="clickBatman()">
+                      <p>The Batman</p>
+                  </div>
+              </div>
+
+              <div class="programBanner">
+                  <div class="bannerImg bannerText">
+                      <img src="telaProgramacao/img/spiderman.jpg" class="imgbanner" width="270px" onclick="clickSpiderman()">
+                      <p>Spider-Man: No Way Home</p>
+                  </div>
+              </div>
+
+            </div>
+
+          </div>
+
 
           <div class="principal">
             <div class="movieimg">
@@ -83,51 +133,7 @@
           </div>
         </footer>
 
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-        crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-        <script type="text/javascript" src="telaPrincipal/script/events.js"></script>
-        <script type="text/javascript">
-
-          $('.sliderA').slick({
-            autoplay: true,
-            dots: true,
-            slidesToShow: 1,
-            adaptiveHeight: true
-          });
-
-          $('.sliderB').slick({
-            autoplay: true,
-  centerMode: true,
-  centerPadding: '60px',
-  slidesToShow: 2,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-  ]
-});
-              
-        </script>
       </div>
-
       
 
 </body>
