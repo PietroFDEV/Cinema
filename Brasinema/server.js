@@ -16,12 +16,20 @@ app.get("/home", function(req,res){
     res.sendFile(__dirname + "/public/indexPrincipal.html")
 })
 
-app.get("/homem-aranha", function(req,res){
-    res.sendFile(__dirname + "/public/indexFilme.html")
+app.get("/spiderman", function(req,res){
+    res.sendFile(__dirname + "/public/indexSpiderman.html")
 })
 
 app.get("/ingresso", function(req,res){
     res.sendFile(__dirname + "/public/indexCompra.html")
+})
+
+app.get("/programacao", function(req,res){
+    res.sendFile(__dirname + "/public/indexProgramacao.html")
+})
+
+app.get("/batman", function(req,res){
+    res.sendFile(__dirname + "/public/indexBatman.html")
 })
 
 

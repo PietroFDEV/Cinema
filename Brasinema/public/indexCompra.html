@@ -13,16 +13,19 @@
         <header>
             <nav>
                 <a class="logo" href="/home">
-                    <img src="telaFilme/img/Logo.png">
+                    <img src="telaPrincipal/img/Logo.png">
                 </a>
                 <ul class="nav-list">
                     <li><a href="/homem-aranha">Em Cartaz</a></li>
                     <li><a href="/homem-aranha">Em Breve</a></li>
-                    <li><a href="/homem-aranha">Programação</a></li>
+                    <li><a href="/programacao">Programação</a></li>
                 </ul>
             </nav>
         </header>
-
+                
+      
+        
+            
 
         <main>
 
@@ -32,23 +35,31 @@
                 <h2 id="title">Homem-Aranha: Sem Volta para Casa</h2>
                 </br> </br>
 
-                <form action="/add" method="POST">
+                <form action="/add" method="POST" id="box">
 
+                    <div class="labelStilo">
+                        <label class="caixatxt" >Sessão:</label>
+                        <input  type="text" placeholder="Digite a sessão" name="sessaoId" class="caixatxt" required>
+                    </div>
+                    </br> 
 
-                    <label>Sessão:</label>
-                    <input type="text" placeholder="Digite a sessão" name="sessaoId" class="caixatxt" required>
-                    </br> </br>
-                    <label>Nome:</label>
-                    <input type="text" placeholder="Digite seu nome completo" name="nome" class="caixatxt" required>
-                    </br> </br>
-                    <label>CPF:</label>
-                    <input type="text" placeholder="Digite seu CPF" name="cpf" class="caixatxt" required>
-                    </br> </br>
-                    <label>Email:</label>
-                    <input type="text" placeholder="Digite seu email" name="email" class="caixatxt" required>
-                    </br> </br>
+                    <div class="labelStilo">
+                        <label class="caixatxt" >Nome:</label>
+                        <input type="text" placeholder="Digite seu nome completo" name="nome" class="caixatxt" required>
+                    </div>
+                    </br> 
+                    <div class="labelStilo">
+                        <label class="caixatxt" >CPF:</label>
+                        <input type="text" placeholder="Digite seu CPF" name="cpf" class="caixatxt" required>
+                    </div>
+                    </br> 
+                    <div class="labelStilo">
+                        <label class="caixatxt" >Email:</label>
+                        <input type="text" placeholder="Digite seu email" name="email" class="caixatxt" required>
+                    </div>
+                    </br> 
                     <button type="submit" class="subButton">Finalizar</button>
-
+            
 
                 </form>
 
@@ -75,4 +86,5 @@
 
         
     </body>
+            
 </html>
