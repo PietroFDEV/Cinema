@@ -32,6 +32,10 @@ app.get("/batman", function(req,res){
     res.sendFile(__dirname + "/public/indexBatman.html")
 })
 
+app.get("/em-cartaz", function(req,res){
+    res.sendFile(__dirname + "/public/indexEmCartaz.html")
+})
+
 
 
 //body-parser
