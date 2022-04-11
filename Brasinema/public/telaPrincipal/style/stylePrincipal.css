@@ -66,12 +66,12 @@ nav {
 /*_____________________SLIDER_______________________*/
 
 .sliderW1{
-    width: 89%;
+    width: 100%;
     margin: 0 auto;
 }
 
 .sliderW2{
-    width: 30%;
+    width: 50%;
     max-width: 89%;
     height: 20%;
     max-height: 30%;
@@ -119,8 +119,8 @@ button.slick-next.slick-arrow{
 }
 
 .sliderA{
-    width: 100%;
-    height: auto;
+    width: 39%;
+    height: 150%;
     position: relative;
     margin: auto;
     align-items: center;
@@ -153,7 +153,17 @@ button.slick-next.slick-arrow{
     height: auto;
 }
 
-
+.slick-dots button{
+    background-color: transparent;
+    border: none;
+    background-image: url(BOLA.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
 
 /*_____________________SLIDER_______________________*/
 /*_____________________SLIDER_______________________*/
