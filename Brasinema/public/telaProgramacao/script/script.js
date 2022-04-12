@@ -2,13 +2,13 @@ function abreLinha1(){
     var conteudo = document.getElementById('pcf1');
     var seta = document.getElementById('setaimg1');
 
-    if (seta.src.indexOf('telaProgramacao/img/arrowdowntrue.png')!= -1) {
+    if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
-        seta.src = "telaProgramacao/img/arrowup.png";
+        seta.src = "imagens/overlay/arrowup.png";
     }
     else{
         conteudo.style.display = 'none';
-        seta.src = "telaProgramacao/img/arrowdowntrue.png";
+        seta.src = "imagens/overlay/arrowdowntrue.png";
     }
 
 }
@@ -17,13 +17,13 @@ function abreLinha2(){
     var conteudo = document.getElementById('pcf2');
     var seta = document.getElementById('setaimg2');
 
-    if (seta.src.indexOf('telaProgramacao/img/arrowdowntrue.png')!= -1) {
+    if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
-        seta.src = "telaProgramacao/img/arrowup.png";
+        seta.src = "imagens/overlay/arrowup.png";
     }
     else{
         conteudo.style.display = 'none';
-        seta.src = "telaProgramacao/img/arrowdowntrue.png";
+        seta.src = "imagens/overlay/arrowdowntrue.png";
     }
 
 }
@@ -32,13 +32,13 @@ function abreLinha3(){
     var conteudo = document.getElementById('pcf3');
     var seta = document.getElementById('setaimg3');
 
-    if (seta.src.indexOf('telaProgramacao/img/arrowdowntrue.png')!= -1) {
+    if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
-        seta.src = "telaProgramacao/img/arrowup.png";
+        seta.src = "imagens/overlay/arrowup.png";
     }
     else{
         conteudo.style.display = 'none';
-        seta.src = "telaProgramacao/img/arrowdowntrue.png";
+        seta.src = "imagens/overlay/arrowdowntrue.png";
     }
 
 }
@@ -47,13 +47,13 @@ function abreLinha4(){
     var conteudo = document.getElementById('pcf4');
     var seta = document.getElementById('setaimg4');
 
-    if (seta.src.indexOf('telaProgramacao/img/arrowdowntrue.png')!= -1) {
+    if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
-        seta.src = "telaProgramacao/img/arrowup.png";
+        seta.src = "imagens/overlay/arrowup.png";
     }
     else{
         conteudo.style.display = 'none';
-        seta.src = "telaProgramacao/img/arrowdowntrue.png";
+        seta.src = "imagens/overlay/arrowdowntrue.png";
     }
 
 }
@@ -62,13 +62,13 @@ function abreLinha5(){
     var conteudo = document.getElementById('pcf5');
     var seta = document.getElementById('setaimg5');
 
-    if (seta.src.indexOf('telaProgramacao/img/arrowdowntrue.png')!= -1) {
+    if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
-        seta.src = "telaProgramacao/img/arrowup.png";
+        seta.src = "imagens/overlay/arrowup.png";
     }
     else{
         conteudo.style.display = 'none';
-        seta.src = "telaProgramacao/img/arrowdowntrue.png";
+        seta.src = "imagens/overlay/arrowdowntrue.png";
     }
 
 }
@@ -77,13 +77,13 @@ function abreLinha6(){
     var conteudo = document.getElementById('pcf6');
     var seta = document.getElementById('setaimg6');
 
-    if (seta.src.indexOf('telaProgramacao/img/arrowdowntrue.png')!= -1) {
+    if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
-        seta.src = "telaProgramacao/img/arrowup.png";
+        seta.src = "imagens/overlay/arrowup.png";
     }
     else{
         conteudo.style.display = 'none';
-        seta.src = "telaProgramacao/img/arrowdowntrue.png";
+        seta.src = "imagens/overlay/arrowdowntrue.png";
     }
 
 }
@@ -92,21 +92,21 @@ function abreLinha7(){
     var conteudo = document.getElementById('pcf7');
     var seta = document.getElementById('setaimg7');
 
-    if (seta.src.indexOf('telaProgramacao/img/arrowdowntrue.png')!= -1) {
+    if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
-        seta.src = "telaProgramacao/img/arrowup.png";
+        seta.src = "imagens/overlay/arrowup.png";
     }
     else{
         conteudo.style.display = 'none';
-        seta.src = "telaProgramacao/img/arrowdowntrue.png";
+        seta.src = "imagens/overlay/arrowdowntrue.png";
     }
 
 }
 
 function clickSpiderman(){
-    window.location.href = '/spiderman';
+    window.location.href = '/Brasinema/public/indexSpiderman.html';
 }
 
 function clickBatman(){
-    window.location.href = '/batman';
+    window.location.href = '/Brasinema/public/indexBatman.html';
 }

@@ -1,0 +1,22 @@
+.footer-div{
+    display: flex;
+    height: 12vh;
+    color: #ffd700;
+    background-color: black;
+    justify-content: space-evenly;
+    margin-top: 150px;
+
+}
+
+footer{
+    display: absolute;
+    bottom: 0px;
+}
+
+.footer-img{
+    width: 150px;
+}
+
+.margem-p{
+    margin-top: 5vh;
+}
