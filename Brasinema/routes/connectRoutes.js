@@ -4,7 +4,7 @@ const database = require('../models/db');
 const { get } = require('../server');
 const idFilme = require('../public/scripts/scriptProgramacao')
 
-// Definindo para qual rota vão os ejs
+// Rotas sem SQL
 router.get('/', (req,res) => {
     res.redirect('/home');
 });
@@ -13,41 +13,81 @@ router.get("/home", function(req,res){
     res.render('indexPrincipal', {title: 'home'});
 });
 
-router.get("/ingresso", function(req,res){
-    res.render('indexCompra', {title: 'compra'});
-});
-
-router.get("/programacao", function(req,res){
-    res.render('indexProgramacao', {title: 'programacao'});
-});
-
 router.get("/em-cartaz", function(req,res){
     res.render('indexEmCartaz', {title: 'cartaz'});
 });
 
-//teste sql
+// Rotas com SQL
+
 
 router.get("/homem-aranha", function(req,res) {
-    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="2"', function(erro,resultado){
+    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="2"', function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        if(!erro){
-            res.render('indexFilme', { lista: resultado })  
-        }
+        db.query('SELECT * FROM dbcinema.sessao WHERE filmeId="2"', function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexFilme', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao
+            });
+        });  
     });
 });
 
 router.get("/the-batman", function(req,res) {
-    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="3"', function(erro,resultado){
+    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="3"', function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        if(!erro){
-            res.render('indexFilme', { lista: resultado })  
-        }
+        db.query('SELECT * FROM dbcinema.sessao WHERE filmeId="3"', function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexFilme', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao
+            });
+        });  
     });
 });
+
+router.get("/programacao", function(req,res) {
+    db.query('SELECT * FROM dbcinema.filme', function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query('SELECT * FROM dbcinema.sessao', function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexProgramacao', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao
+            });
+        });  
+    });
+});
+
+router.get("/ingresso", function(req,res) {
+    db.query('SELECT * FROM dbcinema.filme', function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query('SELECT * FROM dbcinema.sessao', function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexCompra', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao
+            });
+        });  
+    });
+});
+
 
 
 //rota para salvar os INSERT

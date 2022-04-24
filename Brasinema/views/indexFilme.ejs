@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <% for(item of lista){ %>
+    <% for(item of listaFilme){ %>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,82 +44,23 @@
 
                 </div>
 
+    <% } %>
+
                 <div class="session">
                     <h3 class="sessiontitle">Sessão</h3>
-
+    <% for(item of listaSessao){ %>
                     <div id="container">
                         <div class="square">
                             <div class="sessao">
-                                <p class="psala">| 3D | Sala 3 - 15:20 </p>
-                                <a href="/Brasinema/public/indexCompra.html" class="buttonBuy">
+                                <p class="psala">| <%= item.tipoFilme %> | Sala <%= item.numeroSala %> | <%= item.horario %> - <%= item.data %></p>
+                                <a href="/ingresso" class="buttonBuy">
                                     <button class="buttonStyle">Comprar</button>
                                 </a>
                             </div>
                         </div>
-
                     </div>
-
-                    <div id="container">
-                        <div class="square">
-                            <div class="sessao">
-                                <p class="psala">| 3D | Sala 3 - 15:20 </p>
-                                <a href="/Brasinema/public/indexCompra.html" class="buttonBuy">
-                                    <button class="buttonStyle">Comprar</button>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div id="container">
-                        <div class="square">
-                            <div class="sessao">
-                                <p class="psala">| 3D | Sala 3 - 15:20 </p>
-                                <a href="/Brasinema/public/indexCompra.html" class="buttonBuy">
-                                    <button class="buttonStyle">Comprar</button>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div id="container">
-                        <div class="square">
-                            <div class="sessao">
-                                <p class="psala">| 3D | Sala 3 - 15:20 </p>
-                                <a href="/Brasinema/public/indexCompra.html" class="buttonBuy">
-                                    <button class="buttonStyle">Comprar</button>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div id="container">
-                        <div class="square">
-                            <div class="sessao">
-                                <p class="psala">| 3D | Sala 3 - 15:20 </p>
-                                <a href="/Brasinema/public/indexCompra.html" class="buttonBuy">
-                                    <button class="buttonStyle">Comprar</button>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div id="container">
-                        <div class="square">
-                            <div class="sessao">
-                                <p class="psala">| 3D | Sala 3 - 15:20 </p>
-                                <a href="/Brasinema/public/indexCompra.html" class="buttonBuy">
-                                    <button class="buttonStyle">Comprar</button>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                
+    <% } %>
+                </div>   
             </div>
 
 
@@ -127,15 +68,8 @@
 
             
         </main>
-    <% } %>
-
 
         <%- include("./partials/footer.ejs") %> <!-- Footer-->
-
-
-        <script>
-            
-        </script>
 
     </body>
 
