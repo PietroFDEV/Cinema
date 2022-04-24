@@ -146,6 +146,7 @@ main{
 
 .programBanner:hover{
     box-shadow: #ffd700 0px 4px 15px 0px;
+    cursor: pointer;
 }
 
 
