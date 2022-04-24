@@ -47,10 +47,10 @@ h1 {
 }
 
 
-body > div {
-	padding: 30px 0;
-    
-    
+.maingrid{
+	display: block;
+	padding-top:12vh;
+	padding-bottom: 12vh;
 }
 
 body > div:nth-of-type(even) {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../models/db');
 const { get } = require('../server');
+const idFilme = require('../public/scripts/scriptProgramacao')
 
 // Definindo para qual rota vão os ejs
 router.get('/', (req,res) => {
@@ -12,10 +13,6 @@ router.get("/home", function(req,res){
     res.render('indexPrincipal', {title: 'home'});
 });
 
-router.get("/spiderman", function(req,res){
-    res.render('indexSpiderman', {title: 'spiderman'});
-});
-
 router.get("/ingresso", function(req,res){
     res.render('indexCompra', {title: 'compra'});
 });
@@ -24,25 +21,34 @@ router.get("/programacao", function(req,res){
     res.render('indexProgramacao', {title: 'programacao'});
 });
 
-router.get("/batman", function(req,res){
-    res.render('indexBatman', {title: 'batman'});
-});
-
 router.get("/em-cartaz", function(req,res){
     res.render('indexEmCartaz', {title: 'cartaz'});
 });
 
 //teste sql
-router.get("/filme", function(req,res) {
-    db.query('SELECT * FROM dbcinema.filme', function(erro,resultado){
+
+router.get("/homem-aranha", function(req,res) {
+    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="2"', function(erro,resultado){
         if(erro){
             throw erro;
         }
         if(!erro){
-            res.render('lista', { lista: resultado })  
+            res.render('indexFilme', { lista: resultado })  
         }
     });
 });
+
+router.get("/the-batman", function(req,res) {
+    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="3"', function(erro,resultado){
+        if(erro){
+            throw erro;
+        }
+        if(!erro){
+            res.render('indexFilme', { lista: resultado })  
+        }
+    });
+});
+
 
 //rota para salvar os INSERT
 router.post('/add', function(req,res){

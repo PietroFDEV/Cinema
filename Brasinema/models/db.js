@@ -13,14 +13,15 @@ const connection = mysql.createConnection({
 })
 
 //Verificação se conectou
-/*
-connection.authenticate()
-.then(() => {
-    console.log("Conectado ao MySQL com sucesso!")
-}).catch(() => {
-    console.log("Falha ao se conectar ao MySQL")
+
+connection.connect(function(erro){
+    if (erro){
+        console.log('Falha ao se conectar ao MySQL')
+    }
+    if (!erro){
+        console.log('Conectado ao MySQL com sucesso')
+    }
 })
-*/
 
 global.db = connection;
 

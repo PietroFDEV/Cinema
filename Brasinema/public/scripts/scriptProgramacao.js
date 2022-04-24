@@ -102,11 +102,3 @@ function abreLinha7(){
     }
 
 }
-
-function clickSpiderman(){
-    window.location.href = '/Brasinema/public/indexSpiderman.html';
-}
-
-function clickBatman(){
-    window.location.href = '/Brasinema/public/indexBatman.html';
-}
