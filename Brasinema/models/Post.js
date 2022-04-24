@@ -1,7 +1,9 @@
+//Requerindo o arquivo do banco
 const db = require('./db')
 subQuery: false
 
-const Post = db.sequelize.define('ingressos', {
+//Salvando as informações do form
+const Post = db.connection.define('ingressos', {
     sessaoId: {
         type: db.Sequelize.INTEGER,
         primaryKey: true
@@ -17,6 +19,5 @@ const Post = db.sequelize.define('ingressos', {
     },
 
 })
-
 
 module.exports = Post

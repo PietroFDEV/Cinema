@@ -1,21 +1,30 @@
-const Sequelize = require('sequelize')
+//Requerindo o Sequelize
+const mysql = require('mysql')
 
-const sequelize = new Sequelize('dbcinema', 'root', '12345', {
+//Conectando ao mysql
+const connection = mysql.createConnection({
     host: "localhost",
-    dialect: 'mysql',
+    user: "root",
+    password: "12345",
+    database: "dbcinema",
     define: {
         "timestamps": false
     }
 })
 
-module.exports = {
-    Sequelize: Sequelize,
-    sequelize: sequelize
-}
-
-sequelize.authenticate()
+//Verificação se conectou
+/*
+connection.authenticate()
 .then(() => {
     console.log("Conectado ao MySQL com sucesso!")
 }).catch(() => {
     console.log("Falha ao se conectar ao MySQL")
 })
+*/
+
+global.db = connection;
+
+//Exportando o modulo
+module.exports = {
+    connection,
+}

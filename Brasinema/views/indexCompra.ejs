@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ingresso</title>
+
+        <link rel="stylesheet" type="text/css" href="../public/css/styleCompra.css">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/footer.css">
+    </head>
+    <body>
+        <%- include("./partials/header.ejs") %>  <!-- Header-->
+                
+        <main>
+
+            <div class="formCompra">
+
+
+                <h2 id="title">Homem-Aranha: Sem Volta para Casa</h2>
+                </br> </br>
+
+                <form action="/add" method="POST" id="box">
+
+                    <div class="labelStilo">
+                        <label class="caixatxt" >Sessão:</label>
+                        <input  type="text" placeholder="Digite a sessão" name="sessaoId" class="caixatxt" required>
+                    </div>
+                    </br> 
+
+                    <div class="labelStilo">
+                        <label class="caixatxt" >Nome:</label>
+                        <input type="text" placeholder="Digite seu nome completo" name="nome" class="caixatxt" required>
+                    </div>
+                    </br> 
+                    <div class="labelStilo">
+                        <label class="caixatxt" >CPF:</label>
+                        <input type="text" placeholder="Digite seu CPF" name="cpf" class="caixatxt" required>
+                    </div>
+                    </br> 
+                    <div class="labelStilo">
+                        <label class="caixatxt" >Email:</label>
+                        <input type="text" placeholder="Digite seu email" name="email" class="caixatxt" required>
+                    </div>
+                    </br> 
+                    <button type="submit" class="subButton">Finalizar</button>
+            
+
+                </form>
+
+            </div>
+
+
+
+        </main>
+
+
+        <%- include("./partials/footer.ejs") %> <!-- Footer-->
+
+
+        <script src="telaCompra/script/events.js"></script>
+
+        
+    </body>
+            
+</html>

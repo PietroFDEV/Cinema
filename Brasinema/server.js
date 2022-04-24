@@ -1,62 +1,42 @@
-//Arquivo para rodar o servidor
-
+// Requerindo o que vai ser usado
 const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+
+// Requerindo módulos de outros .js
+const sequelize = require('./models/db');
+const indexRouter = require('./routes/connectRoutes');
+
+// App Express
 const app = express();
-const bodyParser = require('body-parser')
-const Sequelize = require('sequelize')
-const Post = require('./models/Post')
 
+// Arquivos estáticos
 app.use(express.static(__dirname));
+app.use(express.static('public'));
 
-app.use(express.static("public"));
-
-
-//Definindo para qual rota vão os html
-app.get("/home", function(req,res){
-    res.sendFile(__dirname + "/public/indexPrincipal.html")
-})
-
-app.get("/spiderman", function(req,res){
-    res.sendFile(__dirname + "/public/indexSpiderman.html")
-})
-
-app.get("/ingresso", function(req,res){
-    res.sendFile(__dirname + "/public/indexCompra.html")
-})
-
-app.get("/programacao", function(req,res){
-    res.sendFile(__dirname + "/public/indexProgramacao.html")
-})
-
-app.get("/batman", function(req,res){
-    res.sendFile(__dirname + "/public/indexBatman.html")
-})
-
-app.get("/em-cartaz", function(req,res){
-    res.sendFile(__dirname + "/public/indexEmCartaz.html")
-})
-
-
-
-//body-parser
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
-
-app.post('/add', function(req, res){
-    Post.create({
-        sessaoId: req.body.sessaoId,
-        nome: req.body.nome,
-        cpf: req.body.cpf,
-        email: req.body.email
-    }).then(function(){
-        res.redirect('/home')
-    })
-})
-
-
-
-
-//Sempre deixar isso em baixo de tudo\\
+// listen
 app.listen(8081, function(){console.log("Servidor Rodando!");});
-//Sempre deixar isso em baixo de tudo\\
+
+// Registrando engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+app.use((req, res, next) => {
+    res.locals.path = req.path;
+    next();
+});
+
+// routes
+app.use('/', indexRouter);
+
+// Página 404
+app.use((req,res) => {
+    res.status(404).render('404', { title: '404'});
+})
+
+//exportando modulos
+module.exports = app;
+
 
