@@ -1,5 +1,9 @@
+// Requerindo oq vai ser usado
 const express = require('express');
 const router = express.Router();
+
+// Requerindo módulos de outros .js
+const idSessao = require('../public/scripts/scriptFilme');
 const database = require('../models/db');
 const { get } = require('../server');
 const idFilme = require('../public/scripts/scriptProgramacao')
@@ -17,9 +21,12 @@ router.get("/em-cartaz", function(req,res){
     res.render('indexEmCartaz', {title: 'cartaz'});
 });
 
+router.get("/programacao", function(req,res){
+    res.render('indexProgramacao', {title: 'cartaz'});
+});
+
+
 // Rotas com SQL
-
-
 router.get("/homem-aranha", function(req,res) {
     db.query('SELECT * FROM dbcinema.filme WHERE filmeId="2"', function(erro,resultadoFilme){
         if(erro){
@@ -54,24 +61,7 @@ router.get("/the-batman", function(req,res) {
     });
 });
 
-router.get("/programacao", function(req,res) {
-    db.query('SELECT * FROM dbcinema.filme', function(erro,resultadoFilme){
-        if(erro){
-            throw erro;
-        }
-        db.query('SELECT * FROM dbcinema.sessao', function(erro,resultadoSessao){
-            if(erro){
-                throw erro;
-            }
-            res.render('indexProgramacao', { 
-                listaFilme: resultadoFilme,
-                listaSessao: resultadoSessao
-            });
-        });  
-    });
-});
-
-router.get("/ingresso", function(req,res) {
+router.get(""+idSessao+"", function(req,res) {
     db.query('SELECT * FROM dbcinema.filme', function(erro,resultadoFilme){
         if(erro){
             throw erro;

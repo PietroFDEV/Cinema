@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="css/styleFilme.css">
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/footer.css">
+        <script src="../public/scripts/scriptFilme.js"></script>
         <title><%= item.nome %></title>
     </head>
 
@@ -53,7 +54,7 @@
                         <div class="square">
                             <div class="sessao">
                                 <p class="psala">| <%= item.tipoFilme %> | Sala <%= item.numeroSala %> | <%= item.horario %> - <%= item.data %></p>
-                                <a href="/ingresso" class="buttonBuy">
+                                <a href="/ingresso/<%= item.sessaoId %>" class="buttonBuy" onclick="sessaoClick()">
                                     <button class="buttonStyle">Comprar</button>
                                 </a>
                             </div>
@@ -62,13 +63,9 @@
     <% } %>
                 </div>   
             </div>
-
-
-
-
             
         </main>
-
+        
         <%- include("./partials/footer.ejs") %> <!-- Footer-->
 
     </body>
