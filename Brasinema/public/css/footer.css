@@ -8,10 +8,9 @@
 }
 
 footer{
-    display: absolute;
-    bottom: 0px;
-}
-
+    bottom:0;
+    width:100%;
+}   
 .footer-img{
     width: 150px;
 }

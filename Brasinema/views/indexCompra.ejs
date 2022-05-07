@@ -10,19 +10,46 @@
         <link rel="stylesheet" type="text/css" href="../public/css/styleCompra.css">
         <link rel="stylesheet" href="../public/css/navbar.css">
         <link rel="stylesheet" href="../public/css/footer.css">
+        <script src="../public/scripts/scriptCompra.js"></script>
     </head>
     <body>
         <%- include("./partials/header.ejs") %>  <!-- Header-->
                 
         <main>
-
-            <div class="formCompra">
-                <h2 id="title"><%= item.nome %></h2>
-                <div class="movieimg">
-                    <img src="<%= item.imgBanner %>" alt="Principal" width="140" height="200" >
+            <div class="mainContent">
+                <div class="mainTitle">
+                    <h2>Compra de Ingressos </h2>
                 </div>
+
+                <div class="session">
+                    <div class="movieName">
+                        <h3>Sessões disponíveis para: <%= item.nome %></h3>
+                    </div>
         <% } %>
+                    <div class="sessionList">
+        <% for(item of listaSessao){ %>
+                        <div class="sessionItem">
+                            <p>
+                                <%= item.tipoFilme %> | Sala <%= item.numeroSala %> 
+                                </br> 
+                                <%= item.horario %> | <%= item.data %>
+                            </p>
+                        </div>
+        <% } %>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- Modal -->
+
+            <div id="mainModal">
+                <div class="modalContent">
+                    <span class="close">&times;</span>
+                    <h1>aaaaaaa</h1>
+                </div>
+            </div>
+            
 
 
             <!--
@@ -63,8 +90,6 @@
 
         <%- include("./partials/footer.ejs") %> <!-- Footer-->
 
-
-        <script src="telaCompra/script/events.js"></script>
 
         
     </body>

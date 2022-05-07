@@ -1,11 +1,72 @@
 
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-
 main{
+    background-image: linear-gradient(45deg, rgb(73, 73, 73), rgb(0, 0, 0));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top center;
+    height: 80vh;
+}
+
+.mainContent{
+    margin-left: 17%;
+    margin-right: 17%;
+    margin-bottom: 5vh;
+    padding-top: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
+.mainTitle{
+    text-align: left;
+    font-size: 3vh;
+}
+
+.session{
+    background-color: rgb(20, 20, 20);
+    margin-top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.movieName{
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    background-color: rgb(32, 32, 32);
+}
+
+.sessionList{
+    padding: 3vh 0;
+    font-size: 20px;
+    border-style: solid;
+    border-width: 2px 0px 0px 0px;
+    border-color: black;
+    text-align: left;
+}
+
+.sessionItem{
+    display: block;
+    background-color: rgb(10, 10, 10);
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgba(0, 0, 0, 0.411);
+    border-radius: 10px;
+    display: inline-block;
+    padding: 10px 40px;
+    box-shadow: rgba(0, 0, 1, 0.5) 0px 7px 29px 0px;
     text-align: center;
+    margin: 0px 30px;
+}
+
+.sessionItem:hover{
+    color: #ffd700;
+    background-color: rgb(8, 8, 8);
+    border-color: rgb(0, 0, 0);
+    cursor: pointer;
 }
 
 #box{
@@ -34,23 +95,6 @@ main{
     float: right;
 }
 
-body{
-    background-image: linear-gradient(45deg, rgb(73, 73, 73), rgb(0, 0, 0));
-}
-
-.formCompra{
-    display: inline-block;
-    text-align: center left;
-    color:white;
-    margin: 100px;
-    padding: 30px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    border-style: solid;
-    border-color:grey;
-    border-width: 4px;
-    background-color: rgb(59, 59, 59);
-}
 
 #title{
     font-size: 30px;
@@ -75,13 +119,36 @@ body{
 
 
 
+/*_______MODAL_______*/
+/*_______MODAL_______*/
+#mainModal{
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modalContent {
+    background-color: #ffffff;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
 
-
-
-
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-/*_____________________BODY_______________________*/
-
+/*_______MODAL_______*/
+/*_______MODAL_______*/
