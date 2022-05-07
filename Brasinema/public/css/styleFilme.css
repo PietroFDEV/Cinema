@@ -85,6 +85,13 @@ body{
     border-width: 1px;
 }
 
+.buttonDiv{
+    margin-left: 17%;
+    margin-right: 17%;
+    text-align: center;
+    margin-top: 10px;
+}
+
 .buttonBuy{
     margin-left: 1%;
 }
@@ -94,10 +101,16 @@ body{
     color: white;
     border-style: solid;
     border-width: 2px;
-    border-color: rgb(43, 43, 43);
+    border-color: rgb(24, 24, 24);
     padding: 3px 15px;
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(24, 24, 24);
 }
+
+.buttonStyle:hover{
+    background-color: rgb(0, 0, 0);
+}
+
+
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/

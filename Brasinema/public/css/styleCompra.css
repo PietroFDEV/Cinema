@@ -4,6 +4,10 @@
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/
 
+main{
+    text-align: center;
+}
+
 #box{
     background-color: rgb(77, 77, 77);
     border-radius: 11px;
@@ -62,6 +66,10 @@ body{
     padding: 5px 10px;
     position: relative;
     top: 10px;
+}
+
+.movieimg{
+    margin-top: 10px;
 }
 
 

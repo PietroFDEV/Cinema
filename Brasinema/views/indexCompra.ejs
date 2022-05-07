@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <% for(item of listaFilme){ %>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ingresso</title>
+        <title>Ingresso <%= item.nome %></title>
 
         <link rel="stylesheet" type="text/css" href="../public/css/styleCompra.css">
-        <link rel="stylesheet" href="css/navbar.css">
-        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="../public/css/navbar.css">
+        <link rel="stylesheet" href="../public/css/footer.css">
     </head>
     <body>
         <%- include("./partials/header.ejs") %>  <!-- Header-->
@@ -16,11 +17,15 @@
         <main>
 
             <div class="formCompra">
+                <h2 id="title"><%= item.nome %></h2>
+                <div class="movieimg">
+                    <img src="<%= item.imgBanner %>" alt="Principal" width="140" height="200" >
+                </div>
+        <% } %>
+            </div>
 
 
-                <h2 id="title">Homem-Aranha: Sem Volta para Casa</h2>
-                </br> </br>
-
+            <!--
                 <form action="/add" method="POST" id="box">
 
                     <div class="labelStilo">
@@ -48,8 +53,8 @@
             
 
                 </form>
+        -->
 
-            </div>
 
 
 

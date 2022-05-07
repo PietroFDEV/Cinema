@@ -61,12 +61,30 @@ router.get("/the-batman", function(req,res) {
     });
 });
 
-router.get(""+idSessao+"", function(req,res) {
-    db.query('SELECT * FROM dbcinema.filme', function(erro,resultadoFilme){
+
+router.get("/ingresso/The%20Batman", function(req,res) {
+    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="3"', function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query('SELECT * FROM dbcinema.sessao', function(erro,resultadoSessao){
+        db.query('SELECT * FROM dbcinema.sessao WHERE filmeId="3"', function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexCompra', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao
+            });
+        });  
+    });
+});
+
+router.get("/ingresso/Homem-Aranha:%20Sem%20Volta%20para%20Casa", function(req,res) {
+    db.query('SELECT * FROM dbcinema.filme WHERE filmeId="2"', function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query('SELECT * FROM dbcinema.sessao WHERE filmeId="2"', function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }

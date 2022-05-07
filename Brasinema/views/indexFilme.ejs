@@ -54,14 +54,19 @@
                         <div class="square">
                             <div class="sessao">
                                 <p class="psala">| <%= item.tipoFilme %> | Sala <%= item.numeroSala %> | <%= item.horario %> - <%= item.data %></p>
-                                <a href="/ingresso/<%= item.sessaoId %>" class="buttonBuy" onclick="sessaoClick()">
-                                    <button class="buttonStyle">Comprar</button>
-                                </a>
                             </div>
                         </div>
                     </div>
     <% } %>
                 </div>   
+
+    <% for(item of listaFilme){ %>
+                <div class="buttonDiv">
+                    <a href="/ingresso/<%= item.nome %>" class="buttonBuy" onclick="sessaoClick()">
+                        <button class="buttonStyle">Comprar Ingressos</button>
+                    </a>
+                </div>
+    <% } %>
             </div>
             
         </main>
