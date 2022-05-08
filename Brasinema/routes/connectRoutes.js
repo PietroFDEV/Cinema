@@ -105,7 +105,7 @@ router.post('/add', function(req,res){
         if(erro){
             res.status(200).send('Erro: ' + erro)
         }
-        res.redirect('/ingresso')
+        res.redirect('/programacao')
     });
 });
 

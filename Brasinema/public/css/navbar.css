@@ -55,5 +55,29 @@ nav {
 
 .nav-list > li{
     letter-spacing: 3px;
-    margin-left: 32px;
+    margin-left: 40px;
 }
+
+#citySelect{
+    color: white;
+    font-family: fantasy;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+#citySelect:hover{
+    cursor: pointer;
+    color: #cfcfcf;
+}
+
+#city{
+    font-size: 19px;
+    text-decoration: underline;
+}
+
+#cityText{
+    text-align: left;
+    margin-left: 10px;
+}
+
