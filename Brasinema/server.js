@@ -10,6 +10,7 @@ const indexRouter = require('./routes/connectRoutes');
 // App Express
 const app = express();
 
+
 // Arquivos estáticos
 app.use(express.static(__dirname));
 app.use(express.static('public'));
@@ -27,7 +28,6 @@ app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
 });
-
 // routes
 app.use('/', indexRouter);
 
@@ -37,6 +37,8 @@ app.use((req,res) => {
 })
 
 //exportando modulos
-module.exports = app;
+module.exports ={
+    app,
+}
 
 

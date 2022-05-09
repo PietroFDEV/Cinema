@@ -1,6 +1,7 @@
 //Requerindo o Sequelize
 const mysql = require('mysql')
 let databaseFilial = "dbcinema";
+let filial = "Paraná";
 
 //Conectando ao mysql
 const connection = mysql.createConnection({
@@ -31,5 +32,6 @@ global.db = connection;
 //Exportando o modulo
 module.exports = {
     connection,
-    databaseFilial
+    databaseFilial,
+    filial
 }

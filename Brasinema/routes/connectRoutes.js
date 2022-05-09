@@ -7,6 +7,8 @@ const idSessao = require('../public/scripts/scriptFilme');
 const database = require('../models/db');
 const { get } = require('../server');
 const idFilme = require('../public/scripts/scriptProgramacao');
+let filialA = require('../models/db');
+let filial = filialA.filial;
 
 // Rotas sem SQL
 router.get('/', (req,res) => {
@@ -52,7 +54,8 @@ router.get("/homem-aranha", function(req,res) {
             }
             res.render('indexFilme', { 
                 listaFilme: resultadoFilme,
-                listaSessao: resultadoSessao
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial
             });
         });  
     });
