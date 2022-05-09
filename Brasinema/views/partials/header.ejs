@@ -1,7 +1,7 @@
 <header>
     <nav>
         <a class="logo" href="/">
-            <img src="../../public/imagens/overlay/Logo.png">
+            <img src="../public/imagens/overlay/Logo.png">
         </a>
 
         <ul class="nav-list">
@@ -10,12 +10,25 @@
           <li><a href="/programacao">Programação</a></li>
         </ul>
 
-        <div id="citySelect">
+        <div id="citySelect" onclick="openModalHeader()">
           <img src="../../public/imagens/overlay/locationPin.png" height="32px" id="locationImg" itemid="locationImg">
 
           <div id="cityText"><p>Programação em</p>
-            <p id="city">Curitiba-PR</p>
+            <p id="city"><% filial %></p>
           </div>
         </div>
     </nav>
+
+    <div id="myModal" class="modalHeader">
+
+      <div class="modal-contentHeader">
+        <span class="closeHeader" onclick="closeModalHeader()">&times;</span>
+        <h3>Selecione uma filial</h3>
+
+        <p onclick="paranaClick()" id="headerPr">Paraná</p>
+        <br>
+        <p onclick="acreClick()" id="headerAc">Acre</p>
+      </div>
+    
+    </div>
   </header>
