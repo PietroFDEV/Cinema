@@ -1,11 +1,4 @@
-var city = document.getElementById('city').innerHTML;
-
-if (city == "undefined"){
-    
-}
-
-let filialA = require('../../models/db');
-let filial = filialA.filial;
+let filialAlter;
 
 function openModalHeader(){
     var modal = document.getElementById('myModal');
@@ -18,13 +11,13 @@ function closeModalHeader(){
 }
 
 function paranaClick(){
-    filial = "Paraná";
+    filialAlter = "Paraná";
     location.reload();
 }
 
 function acreClick(){
-    filial = "Acre";
+    filialAlter = "Acre";
     location.reload();
 }
 
-//module.exports = filial;
+module.exports = filialAlter;

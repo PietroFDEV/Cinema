@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 // routes
-app.use('/', indexRouter);
+app.use('/', indexRouter.router);
 
 // Página 404
 app.use((req,res) => {

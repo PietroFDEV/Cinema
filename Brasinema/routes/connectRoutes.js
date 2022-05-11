@@ -7,8 +7,17 @@ const idSessao = require('../public/scripts/scriptFilme');
 const database = require('../models/db');
 const { get } = require('../server');
 const idFilme = require('../public/scripts/scriptProgramacao');
-let filialA = require('../models/db');
-let filial = filialA.filial;
+
+var filialAlter = require('../public/scripts/header')
+
+if (typeof filialAlter != "undefined") {
+    console.log("filialAlter is defined AND a is TRUE value");
+    var filial = filialAlter;
+} else {
+    console.log("filial not exist OR a is a FALSE value");
+    var filial = "Paraná";
+}
+  
 
 // Rotas sem SQL
 router.get('/', (req,res) => {
@@ -127,4 +136,7 @@ router.post('/add', function(req,res){
 
 
 
-module.exports = router;
+module.exports ={
+    router,
+    filial
+}
