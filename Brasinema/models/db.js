@@ -1,22 +1,12 @@
 //Requerindo o Sequelize
 const mysql = require('mysql')
-let databaseFilial = "dbcinema";
-
-let filialAlter = require('../public/scripts/header');
-
-if(filialAlter == "Acre"){
-    databaseFilial = "dbcinema2";
-}
-else{
-    databaseFilial = "dbcinema";
-}
 
 //Conectando ao mysql
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "12345",
-    database: databaseFilial,
+    database: "dbCinema",
     define: {
         "timestamps": false
     }
@@ -40,5 +30,4 @@ global.db = connection;
 //Exportando o modulo
 module.exports = {
     connection,
-    databaseFilial,
 }

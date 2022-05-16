@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erro 404</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../public/css/navbar.css">
     <link rel="stylesheet" href="../public/css/footer.css">
-    <link rel="stylesheet" href="../public/css/style404.css">
+    <link rel="stylesheet" href="../public/css/styleLogin.css">
     <script src="../public/scripts/header.js"></script>
 </head>
 <body>
+    <%- include("./partials/header.ejs") %>  <!-- Header-->
+
     <main>
-        <h1>Ops, página não encontrada!</h1>
+
+        <div class="formPrincipal">
+            <h2>Usuário ou senha errados, tente novamente</h2>
+
+        </div>
     </main>
+
+    <%- include("./partials/footer.ejs") %> <!-- Footer-->
 </body>
 </html>

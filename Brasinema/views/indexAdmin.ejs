@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../public/css/navbar.css">
+    <link rel="stylesheet" href="../public/css/footer.css">
+    <link rel="stylesheet" href="../public/css/styleAdmin.css">
+    <script src="../public/scripts/header.js"></script>
+    
+</head>
+<body>
+
+    <%- include("./partials/header.ejs") %>  <!-- Header-->
+
+    <main>
+
+        <div class="principal">
+
+            <table>
+                <caption>Lista de Funcionários: Filial <%= filialEscolhida %></caption>
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Salário</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% for(item of listaFuncionarios){ %>
+                  <tr>
+                    <th scope="row"><%= item.idFuncionario %></th>
+                    <td><%= item.nomeFuncionario %></td>
+                    <td><%= item.cpfFuncionario %></td>
+                    <td><%= item.cargoFuncionario %></td>
+                    <td><%= item.salarioFuncionario %></td>
+                  </tr>
+                <% } %>
+
+                </tbody>
+
+              </table>
+
+        </div>
+
+    </main>
+
+
+
+    <%- include("./partials/footer.ejs") %> <!-- Footer-->
+    
+</body>
+</html>

@@ -10,54 +10,67 @@ const idFilme = require('../public/scripts/scriptProgramacao');
 
 var filialAlter = require('../public/scripts/header')
 
-if (typeof filialAlter != "undefined") {
-    console.log("filialAlter is defined AND a is TRUE value");
-    var filial = filialAlter;
-} else {
-    console.log("filial not exist OR a is a FALSE value");
-    var filial = "Paraná";
-}
-  
+var filial = "Paraná";
 
-// Rotas sem SQL
+// if (typeof filialAlter != "undefined") {
+//     console.log("filialAlter is defined AND a is TRUE value");
+//     var filial = filialAlter;
+// }
+
 router.get('/', (req,res) => {
     res.redirect('/home');
 });
 
-router.get("/home", function(req,res){
-    res.render('indexPrincipal', {title: 'home'});
-});
-
-router.get("/em-cartaz", function(req,res){
-    res.render('indexEmCartaz', {titleTeste: 'cartaz'});
-});
-
-router.get("/programacao", function(req,res){
-    res.render('indexProgramacao', {title: 'cartaz'});
-});
-
-
 // Rotas com SQL
-// router.get("/em-cartaz", function(req,res) {
-//     db.query(`SELECT * FROM ${database.databaseFilial}.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
-//         if(erro){
-//             throw erro;
-//         }
-//         db.query(`SELECT * FROM ${database.databaseFilial}.sessao WHERE filmeId="2"`, function(erro,resultadoSessao){
-//             if(erro){
-//                 throw erro;
-//             }
-//             res.render('indexEmCartaz', {titleTeste: 'cartaz'});
-//         });  
-//     });
-// });
 
-router.get("/homem-aranha", function(req,res) {
-    db.query(`SELECT * FROM ${database.databaseFilial}.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
+router.get("/programacao", function(req,res) {
+    db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM ${database.databaseFilial}.sessao WHERE filmeId="2"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao`, function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexProgramacao', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial
+            });
+        });  
+    });
+});
+
+router.get("/em-cartaz", function(req,res) {
+    db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        res.render('indexEmCartaz', { 
+            listaFilme: resultadoFilme,
+            filialEscolhida: filial
+        }); 
+    });
+});
+
+router.get("/home", function(req,res) {
+    db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        res.render('indexPrincipal', { 
+            listaFilme: resultadoFilme,
+            filialEscolhida: filial
+        }); 
+    });
+});
+
+router.get("/homem-aranha", function(req,res) {
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="2"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
@@ -71,53 +84,62 @@ router.get("/homem-aranha", function(req,res) {
 });
 
 router.get("/the-batman", function(req,res) {
-    db.query(`SELECT * FROM ${database.databaseFilial}.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM ${database.databaseFilial}.sessao WHERE filmeId="3"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="3"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
             res.render('indexFilme', { 
                 listaFilme: resultadoFilme,
-                listaSessao: resultadoSessao
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial
             });
         });  
     });
 });
 
 router.get("/ingresso/The%20Batman", function(req,res) {
-    db.query(`SELECT * FROM ${database.databaseFilial}.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM ${database.databaseFilial}.sessao WHERE filmeId="3"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="3"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
             res.render('indexCompra', { 
                 listaFilme: resultadoFilme,
-                listaSessao: resultadoSessao
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial
             });
         });  
     });
 });
 
 router.get("/ingresso/Homem-Aranha:%20Sem%20Volta%20para%20Casa", function(req,res) {
-    db.query(`SELECT * FROM ${database.databaseFilial}.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM ${database.databaseFilial}.sessao WHERE filmeId="2"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="2"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
             res.render('indexCompra', { 
                 listaFilme: resultadoFilme,
-                listaSessao: resultadoSessao
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial
             });
         });  
+    });
+});
+
+router.get("/admin", function(req,res) {
+    res.render('indexLogin', {
+        filialEscolhida: filial
     });
 });
 
@@ -133,6 +155,35 @@ router.post('/add', function(req,res){
         res.redirect('/programacao')
     });
 });
+
+//rota para o login do admin
+router.post("/admin-logged", function(req,res){
+    try{
+        const user = req.body.user;
+        const password = req.body.password;
+
+        if(user == "admin" && password == "12345"){
+            db.query(`SELECT * FROM dbCinema.funcionarios WHERE idFilial="1" ORDER BY salarioFuncionario`, function(erro,funcionarios){
+                if(erro){
+                    throw erro;
+                }
+                res.render('indexAdmin', { 
+                    listaFuncionarios: funcionarios,
+                    filialEscolhida: filial
+                });
+            });
+        }
+        else{
+            res.render('failLogin', {
+                name: 'fail',
+                filialEscolhida: filial
+            })
+        }
+    }
+    catch (error) {
+        res.status(400).send("Invalid user")
+    }
+})
 
 
 
