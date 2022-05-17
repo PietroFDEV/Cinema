@@ -10,19 +10,21 @@ const idFilme = require('../public/scripts/scriptProgramacao');
 
 //filial
 //let filialAlter = localStorage.getItem('filialAlter');
-var filialAlter = "";
-if (filialAlter == "Paraná") {
-    console.log("filialAlter é Paraná");
-    var filial = "Paraná";
-}
-else if (filialAlter == "Acre") {
-    console.log("filialAlter é Acre");
-    var filial = "Acre";
-}
-else{
-    console.log("filialAlter não existe")
-    var filial = "Paraná";
-}
+// var filialAlter = "";
+// if (filialAlter == "Paraná") {
+//     console.log("filialAlter é Paraná");
+//     var filial = "Paraná";
+// }
+// else if (filialAlter == "Acre") {
+//     console.log("filialAlter é Acre");
+//     var filial = "Acre";
+// }
+// else{
+//     console.log("filialAlter não existe")
+//     var filial = "Paraná";
+// }
+
+var filial = "Paraná";
 
 router.get('/', (req,res) => {
     res.redirect('/home');
@@ -65,7 +67,7 @@ router.get("/home", function(req,res) {
         if(erro){
             throw erro;
         }
-        console.log(filialAlter);
+        //console.log(filialAlter);
         res.render('indexPrincipal', { 
             listaFilme: resultadoFilme,
             filialEscolhida: filial
@@ -197,5 +199,4 @@ router.post("/admin-logged", function(req,res){
 
 module.exports ={
     router,
-    filial
 }
