@@ -8,14 +8,23 @@ const database = require('../models/db');
 const { get } = require('../server');
 const idFilme = require('../public/scripts/scriptProgramacao');
 
-var filialAlter = require('../public/scripts/header')
+//filial
+let filialAlter = localStorage.getItem('filialAlter');
+
+if (filialAlter == "Paraná") {
+    console.log("filialAlter é Paraná");
+    var filial = "Paraná";
+}
+else if (filialAlter == "Acre") {
+    console.log("filialAlter é Acre");
+    var filial = "Acre";
+}
+else{
+    console.log("filialAlter não existe")
+    var filial = "Paraná";
+}
 
 var filial = "Paraná";
-
-// if (typeof filialAlter != "undefined") {
-//     console.log("filialAlter is defined AND a is TRUE value");
-//     var filial = filialAlter;
-// }
 
 router.get('/', (req,res) => {
     res.redirect('/home');
@@ -58,6 +67,7 @@ router.get("/home", function(req,res) {
         if(erro){
             throw erro;
         }
+        console.log(filialAlter);
         res.render('indexPrincipal', { 
             listaFilme: resultadoFilme,
             filialEscolhida: filial
