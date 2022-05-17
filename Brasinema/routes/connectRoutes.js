@@ -9,8 +9,8 @@ const { get } = require('../server');
 const idFilme = require('../public/scripts/scriptProgramacao');
 
 //filial
-let filialAlter = localStorage.getItem('filialAlter');
-
+//let filialAlter = localStorage.getItem('filialAlter');
+var filialAlter = "";
 if (filialAlter == "Paraná") {
     console.log("filialAlter é Paraná");
     var filial = "Paraná";
@@ -23,8 +23,6 @@ else{
     console.log("filialAlter não existe")
     var filial = "Paraná";
 }
-
-var filial = "Paraná";
 
 router.get('/', (req,res) => {
     res.redirect('/home');
