@@ -10,6 +10,8 @@ const indexRouter = require('./routes/connectRoutes');
 // App Express
 const app = express();
 
+// routes
+app.use('/', indexRouter.router);
 
 // Arquivos estáticos
 app.use(express.static(__dirname));
@@ -28,8 +30,6 @@ app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
 });
-// routes
-app.use('/', indexRouter.router);
 
 // Página 404
 app.use((req,res) => {

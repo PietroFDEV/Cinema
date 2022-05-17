@@ -1,7 +1,3 @@
-const { filial } = require("../../routes/connectRoutes");
-
-var filialAlter;
-
 function openModalHeader(){
     var modal = document.getElementById('myModal');
     modal.style.display = 'block';
@@ -13,13 +9,11 @@ function closeModalHeader(){
 }
 
 function paranaClick(){
-    filialAlter = "Paraná";
+    localStorage.setItem("filialAlter", "Paraná");
     location.reload();
-    module.exports = filialAlter;
 }
 
 function acreClick(){
-    filialAlter = "Acre";
+    localStorage.setItem("filialAlter", "Acre");
     location.reload();
-    module.exports = filialAlter;
 }

@@ -22,26 +22,37 @@ body > div:nth-of-type(even) {
 
 .grid-template-rows-4 {
     display: grid;
-    grid-gap: 15px;
-	grid-template-columns: 230px auto 230px auto;
+    grid-gap: 20px;
+	grid-template-columns: auto auto auto auto;
 }
 
 .gridContainer{
 	margin-left: 17%;
 	margin-right: 17%;
+	width: 66%;
+	position: relative;
 }
 
 .item {
 	text-align: center;
 	font-size: 1.5em; 
+	box-shadow: rgba(0, 0, 1, 0.5) 0px 7px 29px 0px;
+	background-color: #111111;
+	border-style: solid;
+    border-width: 7px;
+    border-radius: 6px;
+	border-color: #111111;
+	color: rgb(255, 255, 255);
+	font-size: 19px;
+    font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
 
 }
 
 .item:hover{
-    transform:scale(1.25,1.25);
-    display: relative;
-    opacity: 0.9;
+    box-shadow: #ffd700 0px 4px 15px 0px;
     cursor: pointer;
+	color: #ffd700;
 }
 
 
