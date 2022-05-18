@@ -2,6 +2,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+if (typeof localStorage === "undefined" || localStorage === null) {
+    var LocalStorage = require('node-localstorage').LocalStorage;
+    localStorage = new LocalStorage('./scratch');
+}
+  
 
 // Requerindo módulos de outros .js
 const sequelize = require('./models/db');

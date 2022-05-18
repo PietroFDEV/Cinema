@@ -8,24 +8,6 @@ const database = require('../models/db');
 const { get } = require('../server');
 const idFilme = require('../public/scripts/scriptProgramacao');
 
-//filial
-//let filialAlter = localStorage.getItem('filialAlter');
-// var filialAlter = "";
-// if (filialAlter == "Paraná") {
-//     console.log("filialAlter é Paraná");
-//     var filial = "Paraná";
-// }
-// else if (filialAlter == "Acre") {
-//     console.log("filialAlter é Acre");
-//     var filial = "Acre";
-// }
-// else{
-//     console.log("filialAlter não existe")
-//     var filial = "Paraná";
-// }
-
-var filial = "Paraná";
-
 router.get('/', (req,res) => {
     res.redirect('/home');
 });
@@ -33,6 +15,16 @@ router.get('/', (req,res) => {
 // Rotas com SQL
 
 router.get("/programacao", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
@@ -51,6 +43,16 @@ router.get("/programacao", function(req,res) {
 });
 
 router.get("/em-cartaz", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
@@ -63,11 +65,20 @@ router.get("/em-cartaz", function(req,res) {
 });
 
 router.get("/home", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        //console.log(filialAlter);
         res.render('indexPrincipal', { 
             listaFilme: resultadoFilme,
             filialEscolhida: filial
@@ -76,6 +87,16 @@ router.get("/home", function(req,res) {
 });
 
 router.get("/homem-aranha", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
@@ -94,6 +115,16 @@ router.get("/homem-aranha", function(req,res) {
 });
 
 router.get("/the-batman", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
@@ -112,6 +143,16 @@ router.get("/the-batman", function(req,res) {
 });
 
 router.get("/ingresso/The%20Batman", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
@@ -130,6 +171,16 @@ router.get("/ingresso/The%20Batman", function(req,res) {
 });
 
 router.get("/ingresso/Homem-Aranha:%20Sem%20Volta%20para%20Casa", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
@@ -148,16 +199,35 @@ router.get("/ingresso/Homem-Aranha:%20Sem%20Volta%20para%20Casa", function(req,r
 });
 
 router.get("/admin", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "Paraná") {
+        var filial = "Paraná";
+    }
+    else if (filialAlter == "Acre") {
+        var filial = "Acre";
+    }
+    else{
+        var filial = "Paraná";
+    }
     res.render('indexLogin', {
         filialEscolhida: filial
     });
 });
 
+//rota para trocar filial
+router.post('/parana', function(req,res){
+    localStorage.setItem('filialAlter', 'Paraná');
+    res.redirect('back');
+})
 
+router.post('/acre', function(req,res){
+    localStorage.setItem('filialAlter', 'Acre');
+    res.redirect('back');
+})
 
 //rota para salvar os INSERT
 router.post('/add', function(req,res){
-    db.query(`INSERT INTO ${database.databaseFilial}.ingressos(sessaoId,nome,cpf,email) VALUES (?,?,?,?)`,
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email) VALUES (?,?,?,?)`,
     [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email], function(erro){
         if(erro){
             res.status(200).send('Erro: ' + erro)
@@ -173,6 +243,16 @@ router.post("/admin-logged", function(req,res){
         const password = req.body.password;
 
         if(user == "admin" && password == "12345"){
+            var filialAlter = localStorage.getItem('filialAlter');
+            if (filialAlter == "Paraná") {
+                var filial = "Paraná";
+            }
+            else if (filialAlter == "Acre") {
+                var filial = "Acre";
+            }
+            else{
+                var filial = "Paraná";
+            }
             db.query(`SELECT * FROM dbCinema.funcionarios WHERE idFilial="1" ORDER BY salarioFuncionario`, function(erro,funcionarios){
                 if(erro){
                     throw erro;
