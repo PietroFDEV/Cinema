@@ -26,8 +26,8 @@ body > div:nth-of-type(even) {
 
 .grid-template-rows-4 {
     display: grid;
-    grid-gap: 20px;
-	grid-template-columns: auto auto auto auto;
+    grid-gap: 1.7%;
+	grid-template-columns: 24% 24% 24% 24%;
 }
 
 .gridContainer{
@@ -70,4 +70,12 @@ body > div:nth-of-type(even) {
 	margin-left: 17%;
 	margin-right: 17%;
 	margin-bottom: 2vh;
+}
+
+.movieName{
+	display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 95%;
 }

@@ -16,14 +16,17 @@ router.get('/', (req,res) => {
 
 router.get("/programacao", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
     db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
         if(erro){
@@ -44,14 +47,17 @@ router.get("/programacao", function(req,res) {
 
 router.get("/em-cartaz", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
     db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
         if(erro){
@@ -66,16 +72,19 @@ router.get("/em-cartaz", function(req,res) {
 
 router.get("/home", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
-    db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
+    db.query(`SELECT * FROM dbCinema.filme LIMIT 4`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
@@ -88,20 +97,23 @@ router.get("/home", function(req,res) {
 
 router.get("/homem-aranha", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="2"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="2" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
@@ -116,20 +128,23 @@ router.get("/homem-aranha", function(req,res) {
 
 router.get("/the-batman", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="3"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="3" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
@@ -144,20 +159,23 @@ router.get("/the-batman", function(req,res) {
 
 router.get("/ingresso/The%20Batman", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="3"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="3"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="3" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
@@ -172,20 +190,23 @@ router.get("/ingresso/The%20Batman", function(req,res) {
 
 router.get("/ingresso/Homem-Aranha:%20Sem%20Volta%20para%20Casa", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
     db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="2"`, function(erro,resultadoFilme){
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="2"`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="2" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
@@ -200,14 +221,17 @@ router.get("/ingresso/Homem-Aranha:%20Sem%20Volta%20para%20Casa", function(req,r
 
 router.get("/admin", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "Paraná") {
+    if (filialAlter == "1") {
         var filial = "Paraná";
+        var filialN = "1";
     }
-    else if (filialAlter == "Acre") {
-        var filial = "Acre";
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
     }
     else{
         var filial = "Paraná";
+        var filialN = "1";
     }
     res.render('indexLogin', {
         filialEscolhida: filial
@@ -215,13 +239,13 @@ router.get("/admin", function(req,res) {
 });
 
 //rota para trocar filial
-router.post('/parana', function(req,res){
-    localStorage.setItem('filialAlter', 'Paraná');
+router.post('/pr', function(req,res){
+    localStorage.setItem('filialAlter', '1');
     res.redirect('back');
 })
 
-router.post('/acre', function(req,res){
-    localStorage.setItem('filialAlter', 'Acre');
+router.post('/sp', function(req,res){
+    localStorage.setItem('filialAlter', '2');
     res.redirect('back');
 })
 
@@ -242,24 +266,24 @@ router.post("/admin-logged", function(req,res){
         const user = req.body.user;
         const password = req.body.password;
 
+        var filialAlter = localStorage.getItem('filialAlter');
+        if (filialAlter == "1") {
+            var filial = "Paraná";
+        }
+        else if (filialAlter == "2") {
+            var filial = "São Paulo";
+        }
+        else{
+            var filial = "Paraná";
+        }
+
         if(user == "admin" && password == "12345"){
-            var filialAlter = localStorage.getItem('filialAlter');
-            if (filialAlter == "Paraná") {
-                var filial = "Paraná";
-            }
-            else if (filialAlter == "Acre") {
-                var filial = "Acre";
-            }
-            else{
-                var filial = "Paraná";
-            }
-            db.query(`SELECT * FROM dbCinema.funcionarios WHERE idFilial="1" ORDER BY salarioFuncionario`, function(erro,funcionarios){
+            db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
                 if(erro){
                     throw erro;
                 }
                 res.render('indexAdmin', { 
                     listaFuncionarios: funcionarios,
-                    filialEscolhida: filial
                 });
             });
         }

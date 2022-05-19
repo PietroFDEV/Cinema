@@ -187,7 +187,11 @@ main{
 }
 
 .movieP{
-    display: block;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 95%;
 }
 /*_____________________BODY_______________________*/
 /*_____________________BODY_______________________*/

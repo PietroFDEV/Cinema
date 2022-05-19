@@ -11,7 +11,6 @@
       <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
       <script src="../public/scripts/scriptSlider.js"></script>
       <script src="../public/scripts/scriptRotas.js"></script>
-      <script src="../public/scripts/scriptPrincipal.js"></script>
       <script src="../public/scripts/header.js"></script>
       <title>Brasinema</title>
   </head>
@@ -57,33 +56,20 @@
 
             <div class="programContent">
 
+              <% for(item of listaFilme) { %>
               <div class="programBanner">
                   <div class="bannerText">
-                      <img src="imagens/filmes/spiderman2.jpg" class="imgbanner" width="100%" onclick="clickSpiderman()">
-                      <p class="movieP">Spider-Man: No Way Home</p>
+                      <img src="<%= item.imgBanner %>" class="imgbanner" width="100%" onclick="click<%= item.filmeId %>()">
+                      <p class="movieP"><%= item.nome %></p>
                   </div>
               </div>
-
               <div class="programBanner">
-                  <div class="bannerText">
-                      <img src="imagens/filmes/spiderman2.jpg" class="imgbanner" width="100%" onclick="clickSpiderman()">
-                      <p class="movieP">Spider-Man: No Way Home</p>
-                  </div>
-              </div>
-
-              <div class="programBanner">
-                  <div class="bannerText">
-                      <img src="imagens/filmes/batman.jpg" class="imgbanner" width="100%" onclick="clickBatman()">
-                      <p class="movieP">The Batman</p>
-                  </div>
-              </div>
-
-              <div class="programBanner">
-                  <div class="bannerText">
-                      <img src="imagens/filmes/spiderman2.jpg" class="imgbanner" width="100%" onclick="clickSpiderman()">
-                      <p class="movieP">Spider-Man: No Way Home</p>
-                  </div>
-              </div>
+                <div class="bannerText">
+                    <img src="<%= item.imgBanner %>" class="imgbanner" width="100%" onclick="click<%= item.filmeId %>()">
+                    <p class="movieP"><%= item.nome %></p>
+                </div>
+            </div>
+              <% } %>
 
             </div>
 
