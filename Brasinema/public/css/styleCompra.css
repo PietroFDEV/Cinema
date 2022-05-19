@@ -6,6 +6,7 @@ main{
     background-attachment: fixed;
     background-position: top center;
     height: 80vh;
+    padding-top: 9vh;
 }
 
 .mainContent{
