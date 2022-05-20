@@ -25,13 +25,10 @@
                     <Section class="grid grid-template-rows-4">
                         <% for(item of listaFilme){ %>
                         <div class="item">
-                            <img src="<%= item.imgBanner %>" alt="img1" width="100%" onclick="click<%= item.filmeId %>()">
+                            <img src="<%= item.imgBanner %>" alt="img1" height="94%" width="100%" onclick="click<%= item.filmeId %>()">
                             <p class="movieName"><%= item.nome %></p>
                         </div>
-                        <div class="item">
-                            <img src="<%= item.imgBanner %>" alt="img1" width="100%" onclick="click<%= item.filmeId %>()">
-                            <p class="movieName"><%= item.nome %></p>
-                        </div>
+                        
                         <% } %>
                         
                     </Section>

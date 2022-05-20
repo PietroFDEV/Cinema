@@ -78,4 +78,5 @@ body > div:nth-of-type(even) {
     white-space: nowrap;
     overflow: hidden;
     max-width: 95%;
+	padding-top: 0.5%;
 }

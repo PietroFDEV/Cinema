@@ -21,6 +21,7 @@ body{
     color: #fff;
     position: relative;
     padding-left: 15px;
+    width: 30%;
 }
 
 .principal{
@@ -36,6 +37,7 @@ body{
     border-color: #ffd700;
     margin-left: 17%;
     margin-right: 17%;
+    width: 64%;
     background-color: rgb(24, 24, 24);
 }
 

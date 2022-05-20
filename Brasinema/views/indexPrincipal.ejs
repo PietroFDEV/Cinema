@@ -59,16 +59,11 @@
               <% for(item of listaFilme) { %>
               <div class="programBanner">
                   <div class="bannerText">
-                      <img src="<%= item.imgBanner %>" class="imgbanner" width="100%" onclick="click<%= item.filmeId %>()">
+                      <img src="<%= item.imgBanner %>" class="imgbanner" width="100%" height="94%" onclick="click<%= item.filmeId %>()">
                       <p class="movieP"><%= item.nome %></p>
                   </div>
               </div>
-              <div class="programBanner">
-                <div class="bannerText">
-                    <img src="<%= item.imgBanner %>" class="imgbanner" width="100%" onclick="click<%= item.filmeId %>()">
-                    <p class="movieP"><%= item.nome %></p>
-                </div>
-            </div>
+              
               <% } %>
 
             </div>
