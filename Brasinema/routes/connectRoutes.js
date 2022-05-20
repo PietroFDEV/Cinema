@@ -3,11 +3,11 @@ const express = require('express');
 const router = express.Router();
 
 // Requerindo módulos de outros .js
-const idSessao = require('../public/scripts/scriptFilme');
-const database = require('../models/db');
-const { get } = require('../server');
-const idFilme = require('../public/scripts/scriptProgramacao');
+const database = require('../models/db');  //banco de dados
+const { get } = require('../server'); 
 
+
+//rota pra redirecionar pra home
 router.get('/', (req,res) => {
     res.redirect('/home');
 });
@@ -16,7 +16,7 @@ router.get('/', (req,res) => {
 
 router.get("/programacao", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "1") {
+    if (filialAlter == "1") {                  // if pra ver qual filial está selecionada
         var filial = "Paraná";
         var filialN = "1";
     }
@@ -28,11 +28,11 @@ router.get("/programacao", function(req,res) {
         var filial = "Paraná";
         var filialN = "1";
     }
-    db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){
+    db.query(`SELECT * FROM dbCinema.filme`, function(erro,resultadoFilme){  // selecionando dados da table filme
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM dbCinema.sessao`, function(erro,resultadoSessao){
+        db.query(`SELECT * FROM dbCinema.sessao`, function(erro,resultadoSessao){  // selecionando dados da table sessão
             if(erro){
                 throw erro;
             }
@@ -45,7 +45,7 @@ router.get("/programacao", function(req,res) {
     });
 });
 
-router.get("/em-cartaz", function(req,res) {
+router.get("/em-cartaz", function(req,res) { 
     var filialAlter = localStorage.getItem('filialAlter');
     if (filialAlter == "1") {
         var filial = "Paraná";
@@ -306,7 +306,8 @@ router.get("/ingresso/The%20Batman", function(req,res) {
             res.render('indexCompra', { 
                 listaFilme: resultadoFilme,
                 listaSessao: resultadoSessao,
-                filialEscolhida: filial
+                filialEscolhida: filial,
+                filialEscolhidaN: filialN
             });
         });  
     });
@@ -337,7 +338,136 @@ router.get("/ingresso/Homem-Aranha:%20Sem%20Volta%20para%20Casa", function(req,r
             res.render('indexCompra', { 
                 listaFilme: resultadoFilme,
                 listaSessao: resultadoSessao,
-                filialEscolhida: filial
+                filialEscolhida: filial,
+                filialEscolhidaN: filialN
+            });
+        });  
+    });
+});
+
+router.get("/ingresso/Doutor%20Estranho%20no%20Multiverso%20da%20Loucura", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "1") {
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
+    }
+    else{
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="4"`, function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="4" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexCompra', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial,
+                filialEscolhidaN: filialN
+            });
+        });  
+    });
+});
+
+router.get("/ingresso/Jujutsu%20Kaisen%200:%20O%20Filme", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "1") {
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
+    }
+    else{
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="5"`, function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="5" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexCompra', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial,
+                filialEscolhidaN: filialN
+            });
+        });  
+    });
+});
+
+router.get("/ingresso/A%20Medium", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "1") {
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
+    }
+    else{
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="6"`, function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="6" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexCompra', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial,
+                filialEscolhidaN: filialN
+            });
+        });  
+    });
+});
+
+router.get("/ingresso/Sonic%202%20-%20O%20Filme", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "1") {
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
+    }
+    else{
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    db.query(`SELECT * FROM dbCinema.filme WHERE filmeId="7"`, function(erro,resultadoFilme){
+        if(erro){
+            throw erro;
+        }
+        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="7" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexCompra', { 
+                listaFilme: resultadoFilme,
+                listaSessao: resultadoSessao,
+                filialEscolhida: filial,
+                filialEscolhidaN: filialN
             });
         });  
     });
@@ -375,8 +505,8 @@ router.post('/sp', function(req,res){
 
 //rota para salvar os INSERT
 router.post('/add', function(req,res){
-    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email) VALUES (?,?,?,?)`,
-    [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email], function(erro){
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email, req.body.idFilial], function(erro){
         if(erro){
             res.status(200).send('Erro: ' + erro)
         }

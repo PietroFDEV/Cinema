@@ -49,7 +49,7 @@
 
                                 <form action="/add" method="POST" id="box">
 
-                                    <div class="labelStilo" id="inputSessao" >
+                                    <div class="labelStilo, inputInvisible">
                                         <label class="caixatxt" >Sessão:</label>
                                         <input type="text" placeholder="Digite a sessão" name="sessaoId" class="caixatxt" required value="<%= item.sessaoId %>">
                                     </div>
@@ -68,7 +68,11 @@
                                         <label class="caixatxt" >Email:</label>
                                         <input type="text" id="emailInput" placeholder="Digite seu email" name="email" class="caixatxt" required>
                                     </div>
-                                    </br> 
+                                    
+                                    <div class="labelStilo, inputInvisible">
+                                        <label class="caixatxt" >Filial:</label>
+                                        <input type="text" placeholder="Digite a filial" name="idFilial" class="caixatxt" required value="<%= filialEscolhidaN %>">
+                                    </div>
                                     <button type="submit" class="subButton">Finalizar</button>
                             
                 
