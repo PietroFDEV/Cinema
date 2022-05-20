@@ -47,34 +47,56 @@
                                     <p>Assentos disponíveis: ?? de <%= item.assentos %></p>
                                 </div>
 
-                                <form action="/add" method="POST" id="box">
+                                <div class="qntIngresso">
+                                    <h3 class="ingressoLabel">Ingressos:</h3>
+                                    <div class="qntIngresso2">
+                                        <p class="iconMinus" onclick="minusIngresso<%= item.sessaoId%>()">-</p>
+                                        <p class="numIngresso" id="numIngresso<%= item.sessaoId%>">1</p>
+                                        <p class="iconPlus" onclick="plusIngresso<%= item.sessaoId%>()">+</p>
+                                    </div>
+                                </div>
 
-                                    <div class="labelStilo, inputInvisible">
-                                        <label class="caixatxt" >Sessão:</label>
-                                        <input type="text" placeholder="Digite a sessão" name="sessaoId" class="caixatxt" required value="<%= item.sessaoId %>">
+                                <form action="/add1" method="POST" id="box<%= item.sessaoId%>" class="box" name="formIngresso<%= item.sessaoId%>">
+
+                                    <div id="boxInner<%= item.sessaoId%>" class="boxInner">
+
+                                        <div class="divIngresso<%= item.sessaoId%> divIngresso">
+
+                                            <h3>Ingresso 1:</h3>
+    
+                                            <div class="labelStilo, inputInvisible">
+                                                <label class="caixatxt" >Sessão:</label>
+                                                <input type="text" placeholder="Digite a sessão" name="sessaoId" class="caixatxt" required value="<%= item.sessaoId %>">
+                                            </div>
+                        
+                                            <div class="labelStilo">
+                                                <label class="caixatxt" >Nome:</label>
+                                                <input type="text" id="nomeInpute" placeholder="Digite seu nome completo" name="nome" class="caixatxt" required>
+                                            </div>
+                                            </br> 
+                                            <div class="labelStilo">
+                                                <label class="caixatxt" >CPF:</label>
+                                                <input type="text" id="cpfInput" placeholder="Digite seu CPF" name="cpf" class="caixatxt" required>
+                                            </div>
+                                            </br> 
+                                            <div class="labelStilo">
+                                                <label class="caixatxt" >Email:</label>
+                                                <input type="text" id="emailInput" placeholder="Digite seu email" name="email" class="caixatxt" required>
+                                            </div>
+                                            
+                                            <div class="labelStilo, inputInvisible">
+                                                <label class="caixatxt" >Filial:</label>
+                                                <input type="text" placeholder="Digite a filial" name="idFilial" class="caixatxt" required value="<%= filialEscolhidaN %>">
+                                            </div>
+    
+                                        </div>
+    
                                     </div>
-                
-                                    <div class="labelStilo">
-                                        <label class="caixatxt" >Nome:</label>
-                                        <input type="text" id="nomeInpute" placeholder="Digite seu nome completo" name="nome" class="caixatxt" required>
+
+                                    <div class="endForm">
+                                        <h4 id="totalValue<%= item.sessaoId%>">Valor total: R$20,00</h4>
+                                        <button type="submit" class="subButton" onmouseenter="sendForm<%= item.sessaoId%>()">Finalizar</button>
                                     </div>
-                                    </br> 
-                                    <div class="labelStilo">
-                                        <label class="caixatxt" >CPF:</label>
-                                        <input type="text" id="cpfInput" placeholder="Digite seu CPF" name="cpf" class="caixatxt" required>
-                                    </div>
-                                    </br> 
-                                    <div class="labelStilo">
-                                        <label class="caixatxt" >Email:</label>
-                                        <input type="text" id="emailInput" placeholder="Digite seu email" name="email" class="caixatxt" required>
-                                    </div>
-                                    
-                                    <div class="labelStilo, inputInvisible">
-                                        <label class="caixatxt" >Filial:</label>
-                                        <input type="text" placeholder="Digite a filial" name="idFilial" class="caixatxt" required value="<%= filialEscolhidaN %>">
-                                    </div>
-                                    <button type="submit" class="subButton">Finalizar</button>
-                            
                 
                                 </form>
                             </div>
@@ -90,6 +112,103 @@
                                 var modal = document.getElementById('mainModal<%= item.sessaoId%>');
                                 modal.style.display = 'none';
                             }
+
+                            function plusIngresso<%= item.sessaoId%>(){
+                                var qntIngresso = document.getElementById("numIngresso<%= item.sessaoId%>");
+                                qntIngressoInt = parseInt(qntIngresso.innerText);
+                                var totalvalue = document.getElementById("totalValue<%= item.sessaoId%>")
+
+                                if( qntIngresso.innerText == "1"){ 
+                                    qntIngresso.innerText = "2";
+                                    var newDiv = document.createElement('div'); 
+                                    newDiv.className = 'divIngresso<%= item.sessaoId%> divIngresso';
+                                    newDiv.id = 'divIngresso<%= item.sessaoId%>2';
+                                    newDiv.innerHTML = '<h3 class="ingressoN">Ingresso 2:</h3><div class="labelStilo, inputInvisible"><label class="caixatxt" >Sessão:</label><input type="text" placeholder="Digite a sessão" name="sessaoId2" class="caixatxt" required value="<%= item.sessaoId %>"></div><div class="labelStilo"><label class="caixatxt" >Nome:</label><input type="text" id="nomeInpute" placeholder="Digite seu nome completo" name="nome2" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >CPF:</label><input type="text" id="cpfInput" placeholder="Digite seu CPF" name="cpf2" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >Email:</label><input type="text" id="emailInput" placeholder="Digite seu email" name="email2" class="caixatxt" required></div><div class="labelStilo, inputInvisible"><label class="caixatxt" >Filial:</label><input type="text" placeholder="Digite a filial" name="idFilial2" class="caixatxt" required value="<%= filialEscolhidaN %>"></div>';
+                                    document.getElementById('boxInner<%= item.sessaoId%>').appendChild(newDiv);
+                                    totalvalue.innerText = "Valor total: R$40,00";
+
+                                }
+                                else if(qntIngresso.innerText == "2"){
+                                    qntIngresso.innerText = "3";
+                                    var newDiv = document.createElement('div'); 
+                                    newDiv.className = 'divIngresso<%= item.sessaoId%> divIngresso';
+                                    newDiv.id = 'divIngresso<%= item.sessaoId%>3';
+                                    newDiv.innerHTML = '<h3 class="ingressoN">Ingresso 3:</h3><div class="labelStilo, inputInvisible"><label class="caixatxt" >Sessão:</label><input type="text" placeholder="Digite a sessão" name="sessaoId3" class="caixatxt" required value="<%= item.sessaoId %>"></div><div class="labelStilo"><label class="caixatxt" >Nome:</label><input type="text" id="nomeInpute" placeholder="Digite seu nome completo" name="nome3" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >CPF:</label><input type="text" id="cpfInput" placeholder="Digite seu CPF" name="cpf3" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >Email:</label><input type="text" id="emailInput" placeholder="Digite seu email" name="email3" class="caixatxt" required></div><div class="labelStilo, inputInvisible"><label class="caixatxt" >Filial:</label><input type="text" placeholder="Digite a filial" name="idFilial3" class="caixatxt" required value="<%= filialEscolhidaN %>"></div>';
+                                    document.getElementById('boxInner<%= item.sessaoId%>').appendChild(newDiv);
+                                    totalvalue.innerText = "Valor total: R$60,00";
+                                }
+                                else if(qntIngresso.innerText == "3"){
+                                    qntIngresso.innerText = "4";
+                                    var newDiv = document.createElement('div'); 
+                                    newDiv.className = 'divIngresso<%= item.sessaoId%> divIngresso';
+                                    newDiv.id = 'divIngresso<%= item.sessaoId%>4';
+                                    newDiv.innerHTML = '<h3 class="ingressoN">Ingresso 4:</h3><div class="labelStilo, inputInvisible"><label class="caixatxt" >Sessão:</label><input type="text" placeholder="Digite a sessão" name="sessaoId4" class="caixatxt" required value="<%= item.sessaoId %>"></div><div class="labelStilo"><label class="caixatxt" >Nome:</label><input type="text" id="nomeInpute" placeholder="Digite seu nome completo" name="nome4" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >CPF:</label><input type="text" id="cpfInput" placeholder="Digite seu CPF" name="cpf4" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >Email:</label><input type="text" id="emailInput" placeholder="Digite seu email" name="email4" class="caixatxt" required></div><div class="labelStilo, inputInvisible"><label class="caixatxt" >Filial:</label><input type="text" placeholder="Digite a filial" name="idFilial4" class="caixatxt" required value="<%= filialEscolhidaN %>"></div>';
+                                    document.getElementById('boxInner<%= item.sessaoId%>').appendChild(newDiv);
+                                    totalvalue.innerText = "Valor total: R$80,00";
+                                }
+                                else if(qntIngresso.innerText == "4"){
+                                    qntIngresso.innerText = "5";
+                                    var newDiv = document.createElement('div'); 
+                                    newDiv.className = 'divIngresso<%= item.sessaoId%> divIngresso';
+                                    newDiv.id = 'divIngresso<%= item.sessaoId%>5';
+                                    newDiv.innerHTML = '<h3 class="ingressoN">Ingresso 5:</h3><div class="labelStilo, inputInvisible"><label class="caixatxt" >Sessão:</label><input type="text" placeholder="Digite a sessão" name="sessaoId5" class="caixatxt" required value="<%= item.sessaoId %>"></div><div class="labelStilo"><label class="caixatxt" >Nome:</label><input type="text" id="nomeInpute" placeholder="Digite seu nome completo" name="nome5" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >CPF:</label><input type="text" id="cpfInput" placeholder="Digite seu CPF" name="cpf5" class="caixatxt" required></div></br> <div class="labelStilo"><label class="caixatxt" >Email:</label><input type="text" id="emailInput" placeholder="Digite seu email" name="email5" class="caixatxt" required></div><div class="labelStilo, inputInvisible"><label class="caixatxt" >Filial:</label><input type="text" placeholder="Digite a filial" name="idFilial5" class="caixatxt" required value="<%= filialEscolhidaN %>"></div>';
+                                    document.getElementById('boxInner<%= item.sessaoId%>').appendChild(newDiv);
+                                    totalvalue.innerText = "Valor total: R$100,00";
+                                }
+                                
+
+                            }
+
+                            function minusIngresso<%= item.sessaoId%>(){
+                                var qntIngresso = document.getElementById("numIngresso<%= item.sessaoId%>");
+                                var totalvalue = document.getElementById("totalValue<%= item.sessaoId%>")
+
+                                if ( qntIngresso.innerText == "2"){
+                                    qntIngresso.innerText = "1";
+                                    var removeDiv = document.getElementById("divIngresso<%= item.sessaoId%>2");
+                                    removeDiv.remove();
+                                    totalvalue.innerText = "Valor total: R$20,00";
+                                }
+                                else if ( qntIngresso.innerText == "3"){
+                                    qntIngresso.innerText = "2";
+                                    var removeDiv = document.getElementById("divIngresso<%= item.sessaoId%>3");
+                                    removeDiv.remove();
+                                    totalvalue.innerText = "Valor total: R$40,00";
+                                }
+                                else if ( qntIngresso.innerText == "4"){
+                                    qntIngresso.innerText = "3";
+                                    var removeDiv = document.getElementById("divIngresso<%= item.sessaoId%>4");
+                                    removeDiv.remove();
+                                    totalvalue.innerText = "Valor total: R$60,00";
+                                }
+                                else if ( qntIngresso.innerText == "5"){
+                                    qntIngresso.innerText = "4";
+                                    var removeDiv = document.getElementById("divIngresso<%= item.sessaoId%>5");
+                                    removeDiv.remove();
+                                    totalvalue.innerText = "Valor total: R$80,00";
+                                }
+
+                            }
+
+                            function sendForm<%= item.sessaoId%>(){
+                                var qntIngresso = document.getElementById("numIngresso<%= item.sessaoId%>"); 
+                                if(qntIngresso.innerText == "1"){
+                                    document.formIngresso<%= item.sessaoId%>.action = "/add1"
+                                }
+                                else if(qntIngresso.innerText == "2"){
+                                    document.formIngresso<%= item.sessaoId%>.action = "/add2"
+                                }
+                                else if(qntIngresso.innerText == "3"){
+                                    document.formIngresso<%= item.sessaoId%>.action = "/add3"
+                                }
+                                else if(qntIngresso.innerText == "4"){
+                                    document.formIngresso<%= item.sessaoId%>.action = "/add4"
+                                }
+                                else if(qntIngresso.innerText == "5"){
+                                    document.formIngresso<%= item.sessaoId%>.action = "/add5"
+                                }
+                            }
+
 
                         </script>
         <% } %>

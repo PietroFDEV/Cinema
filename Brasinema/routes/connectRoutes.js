@@ -14,6 +14,25 @@ router.get('/', (req,res) => {
 
 // Rotas com SQL
 
+router.get("/compra-efetuada", function(req,res){
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "1") {
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
+    }
+    else{
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    res.render('success', { 
+        filialEscolhida: filial
+    });
+})
+
 router.get("/programacao", function(req,res) {
     var filialAlter = localStorage.getItem('filialAlter');
     if (filialAlter == "1") {                  // if pra ver qual filial está selecionada
@@ -504,14 +523,114 @@ router.post('/sp', function(req,res){
 })
 
 //rota para salvar os INSERT
-router.post('/add', function(req,res){
+router.post('/add1', function(req,res){
     db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
     [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email, req.body.idFilial], function(erro){
         if(erro){
             res.status(200).send('Erro: ' + erro)
         }
-        res.redirect('/programacao')
+        res.redirect('/compra-efetuada');
     });
+});
+
+router.post('/add2', function(req,res){
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email, req.body.idFilial], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId2, req.body.nome2, req.body.cpf2, req.body.email2, req.body.idFilial2], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+        res.redirect('/compra-efetuada');
+    });
+});
+
+router.post('/add3', function(req,res){
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email, req.body.idFilial], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId2, req.body.nome2, req.body.cpf2, req.body.email2, req.body.idFilial2], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId3, req.body.nome3, req.body.cpf3, req.body.email3, req.body.idFilial3], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    res.redirect('/compra-efetuada');
+});
+
+router.post('/add4', function(req,res){
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email, req.body.idFilial], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId2, req.body.nome2, req.body.cpf2, req.body.email2, req.body.idFilial2], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId3, req.body.nome3, req.body.cpf3, req.body.email3, req.body.idFilial3], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId4, req.body.nome4, req.body.cpf4, req.body.email4, req.body.idFilial4], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    res.redirect('/compra-efetuada');
+});
+
+router.post('/add5', function(req,res){
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId, req.body.nome, req.body.cpf, req.body.email, req.body.idFilial], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId2, req.body.nome2, req.body.cpf2, req.body.email2, req.body.idFilial2], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId3, req.body.nome3, req.body.cpf3, req.body.email3, req.body.idFilial3], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId4, req.body.nome4, req.body.cpf4, req.body.email4, req.body.idFilial4], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    db.query(`INSERT INTO dbcinema.ingressos(sessaoId,nome,cpf,email,idFilial) VALUES (?,?,?,?,?)`,
+    [req.body.sessaoId5, req.body.nome5, req.body.cpf5, req.body.email5, req.body.idFilial5], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+    res.redirect('/compra-efetuada');
 });
 
 //rota para o login do admin
