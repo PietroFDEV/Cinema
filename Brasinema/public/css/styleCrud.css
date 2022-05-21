@@ -9,6 +9,10 @@
 
 body {
   background-image: linear-gradient(45deg, rgb(73, 73, 73), rgb(0, 0, 0));
+  background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top center;
 }
 
 button {
@@ -20,7 +24,7 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 10vh;
+  padding-top: 17vh;
 }
 
 .container {
