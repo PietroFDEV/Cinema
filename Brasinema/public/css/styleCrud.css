@@ -25,6 +25,7 @@ button {
   flex-direction: row;
   justify-content: center;
   padding-top: 17vh;
+  padding-bottom: 26%;
 }
 
 .container {
