@@ -7,51 +7,61 @@
     <title>Admin</title>
     <link rel="stylesheet" href="../public/css/navbar.css">
     <link rel="stylesheet" href="../public/css/footer.css">
-    <link rel="stylesheet" href="../public/css/styleAdmin.css">
     <script src="../public/scripts/header.js"></script>
+    <link rel="stylesheet" href="../public/css/styleAdmin.css"> 
+    <link rel="stylesheet" href="css/styleCrud.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
     
 </head>
 <body>
 
-    <%- include("./partials/headerAdmin.ejs") %>  <!-- Header-->
-
-    <main>
-
-        <div class="principal">
-
-            <table>
-                <caption>Lista de Funcionários</caption>
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CPF</th>
-                    <th scope="col">Cargo</th>
-                    <th scope="col">Salário</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% for(item of listaFuncionarios){ %>
-                  <tr>
-                    <th scope="row"><%= item.idFuncionario %></th>
-                    <td><%= item.nomeFuncionario %></td>
-                    <td><%= item.cpfFuncionario %></td>
-                    <td><%= item.cargoFuncionario %></td>
-                    <td><%= item.salarioFuncionario %></td>
-                  </tr>
-                <% } %>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </main>
-
-
-
-    <%- include("./partials/footer.ejs") %> <!-- Footer-->
+  <%- include("./partials/headerAdmin.ejs") %>
+  <div class="megadiv">
+    <div class="container">
+      <div class="header">
+        <span>Cadastro de Funcionários</span>
+        <button onclick="openModal()" id="new">Incluir</i></button>
+      </div>
+  
+      <div class="divTable">
+        <table>
+          <thead>
+            <tr>
+              <th class="acao">Nome Funcionário</th>
+              <th class="acao">Função</th>
+              <th class="acao">Salário</th>
+              <th class="acao">Editar</th>
+              <th class="acao">Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="modal-container">
+        <div class="modal">
+          <form>
+            <label for="m-nome">Nome</label>
+            <input id="m-nome" type="text" required />
     
+            <label for="m-funcao">Função</label>
+            <input id="m-funcao" type="text" required />
+    
+            <label for="m-salario">Salário</label>
+            <input id="m-salario" type="number" required />
+            <button id="btnSalvar">Salvar</button>
+          </form>
+        </div>
+      </div>
+  
+    </div>
+
+  </div>
+
+    <%- include("./partials/footer.ejs") %>
+    
+    <script src="public/scripts/crud.js"></script>
 </body>
 </html>
