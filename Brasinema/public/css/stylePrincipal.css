@@ -101,6 +101,7 @@ main{
     height: fit-content;
     padding-bottom: 7vh;
     padding-top: 74px;
+    min-height: 75vh;
 } 
 
 

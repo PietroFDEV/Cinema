@@ -4,6 +4,9 @@
     color: #ffd700;
     background-color: black;
     justify-content: space-evenly;
+    position: absolute;
+    bottom:0;
+    width: 100%;
 
 }
 

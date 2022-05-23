@@ -5,6 +5,7 @@
 
 body{
     background-image: linear-gradient(45deg, rgb(73, 73, 73), rgb(0, 0, 0));
+    
 }
 
 
@@ -46,6 +47,7 @@ main {
     padding-top: 12vh;
     padding-bottom: 9vh;
     width: 66%;
+    min-height: 75vh;
 }
 
 .divProgram{

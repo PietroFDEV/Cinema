@@ -10,6 +10,7 @@ main{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     padding-bottom: 14vh;
+    min-height: 75vh;
 }
 
 .principal{
