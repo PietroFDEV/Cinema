@@ -1,8 +1,10 @@
+
 const modal = document.querySelector('.modal-container')
 const tbody = document.querySelector('tbody')
 const sNome = document.querySelector('#m-nome')
 const sFuncao = document.querySelector('#m-funcao')
 const sSalario = document.querySelector('#m-salario')
+const sContratacao = document.querySelector('#m-dataContratacao')
 const btnSalvar = document.querySelector('#btnSalvar')
 
 let itens
@@ -21,11 +23,13 @@ function openModal(edit = false, index = 0) {
     sNome.value = itens[index].nome
     sFuncao.value = itens[index].funcao
     sSalario.value = itens[index].salario
+    sContratacao.value = itens[index].dataContratacao
     id = index
   } else {
     sNome.value = ''
     sFuncao.value = ''
     sSalario.value = ''
+    sContratacao.value = ''
   }
   
 }
@@ -48,6 +52,7 @@ function insertItem(item, index) {
     <td>${item.nome}</td>
     <td>${item.funcao}</td>
     <td>R$ ${item.salario}</td>
+    <td>${item.dataContratacao}</td>
     <td class="acao">
       <button onclick="editItem(${index})"><i class='bx bx-edit' ></i></button>
     </td>
@@ -60,7 +65,7 @@ function insertItem(item, index) {
 
 btnSalvar.onclick = e => {
   
-  if (sNome.value == '' || sFuncao.value == '' || sSalario.value == '') {
+  if (sNome.value == '' || sFuncao.value == '' || sSalario.value == '' || sContratacao.value == '') {
     return
   }
 
@@ -70,8 +75,9 @@ btnSalvar.onclick = e => {
     itens[id].nome = sNome.value
     itens[id].funcao = sFuncao.value
     itens[id].salario = sSalario.value
+    itens[id].dataContratacao = sContratacao.value
   } else {
-    itens.push({'nome': sNome.value, 'funcao': sFuncao.value, 'salario': sSalario.value})
+    itens.push({'nome': sNome.value, 'funcao': sFuncao.value, 'salario': sSalario.value, 'Data Contratação': sContratacao.value })
   }
 
   setItensBD()
