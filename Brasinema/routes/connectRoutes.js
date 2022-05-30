@@ -507,7 +507,32 @@ router.get("/admin", function(req,res) {
         var filialN = "1";
     }
     res.render('indexLogin', {
-        filialEscolhida: filial
+        filialEscolhida: filial,
+    });
+});
+
+router.get("/admin-logged", function(req,res) {
+    var filialAlter = localStorage.getItem('filialAlter');
+    if (filialAlter == "1") {
+        var filial = "Paraná";
+        var filialN = "1";
+    }
+    else if (filialAlter == "2") {
+        var filial = "São Paulo";
+        var filialN = "2";
+    }
+    else{
+        var filial = "Paraná";
+        var filialN = "1";
+    }    
+    db.query(`SELECT * FROM dbCinema.funcionarios WHERE idFilial="`+filialN+`"`), function(erro,resultadoFuncioarios){
+        if(erro){
+            throw erro;
+        }
+    }
+    res.render('indexAdmin', {
+        listaFuncionarios: resultadoFuncioarios,
+        filialEscolhida: filial,
     });
 });
 

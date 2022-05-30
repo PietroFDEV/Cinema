@@ -23,7 +23,7 @@
         <span>Cadastro de Funcionários</span>
         <button onclick="openModal()" id="new">Incluir</i></button>
       </div>
-  
+
       <div class="divTable">
         <table>
           <thead>
@@ -35,12 +35,29 @@
               <th class="acao">Editar</th>
               <th class="acao">Excluir</th>
             </tr>
+            <tr>
+            <% for(item of listaFuncionarios){ %>
+            <td><%= item.nomeFuncionario %></td>
+            <td><%= item.cargoFuncionario %></td>
+            <td>R$ <%= item.salarioFuncionario %></td>
+            <td><%= item.mesContratoAtivo %></td>
+            <td class="acao">
+              <button onclick="editItem(${index})"><i class='bx bx-edit' ></i></button>
+            </td>
+            <td class="acao">
+              <button onclick="deleteItem(${index})"><i class='bx bx-trash'></i></button>
+            </td>
+          </tr>
+          <% } %>
+          
+          <tr>Total Salarios: <% console.count(item.salarioFuncionario); %></tr>
+          
           </thead>
           <tbody>
           </tbody>
         </table>
       </div>
-  
+
       <div class="modal-container">
         <div class="modal">
           <form>
