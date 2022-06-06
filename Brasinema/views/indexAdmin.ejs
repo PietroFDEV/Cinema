@@ -17,7 +17,13 @@
 <body>
 
   <%- include("./partials/headerAdmin.ejs") %>
-  <div class="megadiv">
+
+  <div class="chooseTable">
+    <button onclick="openFuncionarios()" class="chooseButton" id="buttonFunc">Funcionários</button>
+    <button onclick="openIngressos()" class="chooseButton" id="buttonIngressos"> Ingressos </button>
+  </div>
+
+  <div id="megadiv">
     <div class="container">
       <div class="header">
         <span>Cadastro de Funcionários</span>
@@ -29,50 +35,117 @@
           <thead>
             <tr>
               <th class="acao">Nome Funcionário</th>
+              <th class="acao">CPF</th>
               <th class="acao">Função</th>
               <th class="acao">Salário</th>
-              <th class="acao">Data Contratação</th>              
+              <th class="acao">Data Contratação</th>
+              <th class="acao">Filial</th>            
               <th class="acao">Editar</th>
               <th class="acao">Excluir</th>
             </tr>
             <tr>
             <% for(item of listaFuncionarios){ %>
             <td><%= item.nomeFuncionario %></td>
+            <td><%= item.cpfFuncionario %></td>
             <td><%= item.cargoFuncionario %></td>
             <td>R$ <%= item.salarioFuncionario %></td>
             <td><%= item.mesContratoAtivo %></td>
+            <td><%= item.idFilial %></td>
             <td class="acao">
-              <button onclick="editItem(${index})"><i class='bx bx-edit' ></i></button>
+              <button onclick="openButtonEdit<%= item.idFuncionario %>()">
+                <i class='bx bx-edit' ></i>
+              </button>
             </td>
             <td class="acao">
-              <button onclick="deleteItem(${index})"><i class='bx bx-trash'></i></button>
+              <form action="/admin-loggedM" method="POST">
+                <input type="text" class="buttonDelete" name="buttonDelete" value="<%= item.idFuncionario %>">
+                <button type="submit" onclick="openButtonDrop<%= item.idFuncionario %>">
+                  <i class='bx bx-trash'></i>
+                </button>
+              </form>
+              
             </td>
           </tr>
+
+          <div id="modal-container<%= item.idFuncionario %>" class="modal-container-edit">
+            <div class="modal">
+              <h2>Editar Funcionário</h2>
+              <form method="POST" action="/admin-loggedE">
+                <input class="m-id" type="text" name="idFunc" value="<%= item.idFuncionario %>"/>
+
+                <label>Nome</label>
+                <input type="text" required name="nomeFunc" value="<%= item.nomeFuncionario %>"/>
+
+                <label>CPF</label>
+                <input type="text" required name="cpfFunc" value="<%= item.cpfFuncionario %>"/>
+
+                <label>Função</label>
+                <input type="text" required name="funcaoFunc" value="<%= item.cargoFuncionario %>"/>
+
+                <label>Salário</label>
+                <input type="number" required name="salarioFunc" value="<%= item.salarioFuncionario %>"/>
+
+                <label>Data de Contratação</label>
+                <input type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required name="dataFunc" value="<%= item.mesContratoAtivo %>"/>
+
+                <label>Filial</label>
+                <input type="number" required name="filialFunc" value="<%= item.idFilial %>"/>
+
+                <button id="btnSalvar" type="submit">Salvar</button>
+              </form>
+            </div>
+          </div>
+
+
+          <script>
+            var modalEdit = document.getElementById('modal-container<%= item.idFuncionario %>');
+
+            function openButtonEdit<%= item.idFuncionario %>(){
+              document.getElementById('modal-container<%= item.idFuncionario %>').style.display = "flex";
+            }
+
+            modalEdit.onclick = e => {
+              if (e.target.className.indexOf('modal-container-edit') !== -1) {
+                document.getElementById('modal-container<%= item.idFuncionario %>').style.display = "none";
+              }
+            }
+
+          </script>
+
+
           <% } %>
-          
-          <tr>Total Salarios: <% console.count(item.salarioFuncionario); %></tr>
-          
+        
           </thead>
           <tbody>
           </tbody>
         </table>
       </div>
 
-      <div class="modal-container">
+      <div id="modal-container" class="modal-container">
         <div class="modal">
-          <form>
+          <h2>Incluir Novo Funcionário</h2>
+          <form method="POST" action="/admin-loggedP">
+            <input class="m-id" type="text" name="idFunc"/>
+
             <label for="m-nome">Nome</label>
-            <input id="m-nome" type="text" required />
+            <input id="m-nome" type="text" required name="nomeFunc"/>
+
+            <label for="m-cpf">CPF</label>
+            <input id="m-cpf" type="text" required name="cpfFunc"/>
     
             <label for="m-funcao">Função</label>
-            <input id="m-funcao" type="text" required />
+            <input id="m-funcao" type="text" required name="funcaoFunc"/>
     
             <label for="m-salario">Salário</label>
-            <input id="m-salario" type="number" required />
+            <input id="m-salario" type="number" required name="salarioFunc"/>
 
             <label for="m-dataContratacao">Data de Contratação</label>
-            <input id="m-dataContratacao" type="date" required />
-            <button id="btnSalvar">Salvar</button>
+            <input id="m-dataContratacao" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" type="date" required name="dataFunc" />
+
+            <label for="m-filial">Filial</label>
+            <input id="m-filial" type="number" required name="filialFunc"/>
+
+            <button id="btnSalvar" type="submit">Salvar</button>
           </form>
         </div>
       </div>
@@ -81,7 +154,140 @@
 
   </div>
 
+
+  <div id="divIngressos">
+    <div class="container">
+      <div class="header">
+        <span>Ingressos</span>
+        <!--<button onclick="openModal()" id="new">Incluir</i></button>-->
+      </div>
+
+      <div class="divTable">
+        <table>
+          <thead>
+            <tr>
+              <th class="acao">Sessão</th>
+              <th class="acao">Nome</th>
+              <th class="acao">CPF</th>
+              <th class="acao">E-mail</th>
+              <th class="acao">Data</th>
+              <th class="acao">Filial</th>            
+              <!--<th class="acao">Editar</th>
+              <th class="acao">Excluir</th> -->
+            </tr>
+            <tr>
+            <% for(item of listaIngressos){ %>
+            <td><%= item.sessaoId %></td>
+            <td><%= item.nome %></td>
+            <td><%= item.cpf %></td>
+            <td><%= item.email %></td>
+            <td><%= item.mes %></td>
+            <td><%= item.idFilial %></td>
+            <!--
+            <td class="acao">
+              <button onclick="openButtonEdit<%= item.idFuncionario %>()">
+                <i class='bx bx-edit' ></i>
+              </button>
+            </td>
+            <td class="acao">
+              <form action="/admin-loggedM" method="POST">
+                <input type="text" class="buttonDelete" name="buttonDelete" value="<%= item.idFuncionario %>">
+                <button type="submit" onclick="openButtonDrop<%= item.idFuncionario %>">
+                  <i class='bx bx-trash'></i>
+                </button>
+              </form>
+              
+            </td>
+          -->
+          </tr>
+
+          <div id="modal-container<%= item.idFuncionario %>" class="modal-container-edit">
+            <div class="modal">
+              <h2>Editar Funcionário</h2>
+              <form method="POST" action="/admin-loggedE">
+                <input class="m-id" type="text" name="idFunc" value="<%= item.idFuncionario %>"/>
+
+                <label>Nome</label>
+                <input type="text" required name="nomeFunc" value="<%= item.nomeFuncionario %>"/>
+
+                <label>CPF</label>
+                <input type="text" required name="cpfFunc" value="<%= item.cpfFuncionario %>"/>
+
+                <label>Função</label>
+                <input type="text" required name="funcaoFunc" value="<%= item.cargoFuncionario %>"/>
+
+                <label>Salário</label>
+                <input type="number" required name="salarioFunc" value="<%= item.salarioFuncionario %>"/>
+
+                <label>Data de Contratação</label>
+                <input type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required name="dataFunc" value="<%= item.mesContratoAtivo %>"/>
+
+                <label>Filial</label>
+                <input type="number" required name="filialFunc" value="<%= item.idFilial %>"/>
+
+                <button id="btnSalvar" type="submit">Salvar</button>
+              </form>
+            </div>
+          </div>
+
+
+          <script>
+            var modalEdit = document.getElementById('modal-container<%= item.idFuncionario %>');
+
+            function openButtonEdit<%= item.idFuncionario %>(){
+              document.getElementById('modal-container<%= item.idFuncionario %>').style.display = "flex";
+            }
+
+            modalEdit.onclick = e => {
+              if (e.target.className.indexOf('modal-container-edit') !== -1) {
+                document.getElementById('modal-container<%= item.idFuncionario %>').style.display = "none";
+              }
+            }
+
+          </script>
+
+
+          <% } %>
+        
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="modal-container" class="modal-container">
+        <div class="modal">
+          <h2>Incluir Novo Funcionário</h2>
+          <form method="POST" action="/admin-loggedP">
+            <input class="m-id" type="text" name="idFunc"/>
+
+            <label for="m-nome">Nome</label>
+            <input id="m-nome" type="text" required name="nomeFunc"/>
+
+            <label for="m-cpf">CPF</label>
+            <input id="m-cpf" type="text" required name="cpfFunc"/>
+    
+            <label for="m-funcao">Função</label>
+            <input id="m-funcao" type="text" required name="funcaoFunc"/>
+    
+            <label for="m-salario">Salário</label>
+            <input id="m-salario" type="number" required name="salarioFunc"/>
+
+            <label for="m-dataContratacao">Data de Contratação</label>
+            <input id="m-dataContratacao" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" type="date" required name="dataFunc" />
+
+            <label for="m-filial">Filial</label>
+            <input id="m-filial" type="number" required name="filialFunc"/>
+
+            <button id="btnSalvar" type="submit">Salvar</button>
+          </form>
+        </div>
+      </div>
   
-    <script src="public/scripts/crud.js"></script>
+    </div>
+  </div>
+
+  
+    <script src="../public/scripts/crud.js"></script>
 </body>
 </html>

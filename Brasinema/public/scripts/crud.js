@@ -1,10 +1,15 @@
 
+/* ----------- CRUD FUNCIONARIOS ---------------*/
+
 const modal = document.querySelector('.modal-container')
 const tbody = document.querySelector('tbody')
+const sId = document.querySelector('#m-id')
 const sNome = document.querySelector('#m-nome')
+const sCPF = document.querySelector('#m-cpf')
 const sFuncao = document.querySelector('#m-funcao')
 const sSalario = document.querySelector('#m-salario')
 const sContratacao = document.querySelector('#m-dataContratacao')
+const sFilial = document.querySelector('#m-filial')
 const btnSalvar = document.querySelector('#btnSalvar')
 
 let itens
@@ -26,10 +31,13 @@ function openModal(edit = false, index = 0) {
     sContratacao.value = itens[index].dataContratacao
     id = index
   } else {
+    sId.value = ''
     sNome.value = ''
+    sCPF.value = ''
     sFuncao.value = ''
     sSalario.value = ''
     sContratacao.value = ''
+    sFilial.value = ''
   }
   
 }
@@ -100,4 +108,28 @@ const getItensBD = () => JSON.parse(localStorage.getItem('dbfunc')) ?? []
 const setItensBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
 
 loadItens()
+
+/* ----------- CRUD FUNCIONARIOS ---------------*/
+
+const megadiv = document.getElementById('megadiv');
+const divIngressos = document.getElementById('divIngressos');
+
+function openFuncionarios(){
+  divIngressos.style.display = "none";
+  megadiv.style.display = "flex";
+  document.getElementById("buttonFunc").style.backgroundColor = "gray";
+  document.getElementById("buttonIngressos").style.backgroundColor = "lightgray";
+}
+
+function openIngressos(){
+  megadiv.style.display = "none";
+  divIngressos.style.display = "flex";
+  document.getElementById("buttonIngressos").style.backgroundColor = "gray";
+  document.getElementById("buttonFunc").style.backgroundColor = "lightgray";
+}
+
+
+/* ----------- CRUD GANHOS ---------------*/
+
+
 

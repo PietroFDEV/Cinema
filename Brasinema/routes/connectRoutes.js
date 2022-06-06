@@ -511,30 +511,7 @@ router.get("/admin", function(req,res) {
     });
 });
 
-router.get("/admin-logged", function(req,res) {
-    var filialAlter = localStorage.getItem('filialAlter');
-    if (filialAlter == "1") {
-        var filial = "Paraná";
-        var filialN = "1";
-    }
-    else if (filialAlter == "2") {
-        var filial = "São Paulo";
-        var filialN = "2";
-    }
-    else{
-        var filial = "Paraná";
-        var filialN = "1";
-    }    
-    db.query(`SELECT * FROM dbCinema.funcionarios WHERE idFilial="`+filialN+`"`), function(erro,resultadoFuncioarios){
-        if(erro){
-            throw erro;
-        }
-    }
-    res.render('indexAdmin', {
-        listaFuncionarios: resultadoFuncioarios,
-        filialEscolhida: filial,
-    });
-});
+
 
 //rota para trocar filial
 router.post('/pr', function(req,res){
@@ -680,16 +657,22 @@ router.post("/admin-logged", function(req,res){
                 if(erro){
                     throw erro;
                 }
-                res.render('indexAdmin', { 
-                    listaFuncionarios: funcionarios,
+                db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
+                    if(erro){
+                        throw erro;
+                    }
+                    res.render('indexAdmin', { 
+                        listaFuncionarios: funcionarios,
+                        listaIngressos: ingressos
+                    });
                 });
             });
         }
         else{
-            res.render('failLogin', {
-                name: 'fail',
-                filialEscolhida: filial
-            })
+        res.render('failLogin', {
+            name: 'fail',
+            filialEscolhida: filial
+        })
         }
     }
     catch (error) {
@@ -697,6 +680,71 @@ router.post("/admin-logged", function(req,res){
     }
 })
 
+//rotas para controle do admin
+router.post("/admin-loggedM", function(req,res){
+    const idFunc = req.body.buttonDelete;
+
+    db.query(`DELETE FROM dbCinema.funcionarios WHERE idFuncionario="`+idFunc+`"`)
+
+    db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
+        if(erro){
+            throw erro;
+        }
+        res.render('indexAdmin', { 
+            listaFuncionarios: funcionarios,
+        });
+    })
+})
+
+router.post("/admin-loggedP", function(req,res){
+    db.query(`INSERT INTO dbCinema.funcionarios(nomeFuncionario,cpfFuncionario,cargoFuncionario,salarioFuncionario,mesContratoAtivo,idFilial) VALUES (?,?,?,?,?,?)`,
+    [req.body.nomeFunc, req.body.cpfFunc, req.body.funcaoFunc, req.body.salarioFunc, req.body.dataFunc, req.body.filialFunc], function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+
+    db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
+        if(erro){
+            throw erro;
+        }
+        res.render('indexAdmin', { 
+            listaFuncionarios: funcionarios,
+        });
+    })
+})
+
+router.post("/admin-loggedE", function(req,res){
+    var id = req.body.idFunc;
+    var nome = req.body.nomeFunc;
+    var cpf = req.body.cpfFunc;
+    var funcao = req.body.funcaoFunc;
+    var salario = req.body.salarioFunc;
+    var data = req.body.dataFunc;
+    var filial = req.body.filialFunc; 
+    db.query(`UPDATE dbCinema.funcionarios 
+        SET nomeFuncionario = "`+nome+`", 
+        cpfFuncionario = "`+cpf+`", 
+        cargoFuncionario = "`+funcao+`", 
+        salarioFuncionario = "`+salario+`", 
+        mesContratoAtivo = "`+data+`", 
+        idFilial = "`+filial+`"
+        WHERE idFuncionario = "`+id+`"`,function(erro){
+        if(erro){
+            res.status(200).send('Erro: ' + erro)
+        }
+    });
+
+    db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
+        if(erro){
+            throw erro;
+        }
+        res.render('indexAdmin', { 
+            listaFuncionarios: funcionarios,
+        });
+    })
+
+});
 
 
 module.exports ={

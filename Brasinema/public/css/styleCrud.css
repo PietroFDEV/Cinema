@@ -22,17 +22,17 @@ button {
   cursor: pointer;
 }
 
-.megadiv{
+#megadiv{
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 17vh;
+  padding-top: 3vh;
   padding-bottom: 26%;
 }
 
 .container {
-  width: 50%;
+  width: 80%;
   height: 40%;
   border-radius: 10px;
   background: darkgrey;
@@ -50,6 +50,7 @@ button {
   font-weight: 900;
   font-size: 20px;
   word-break: break-all;
+  padding-left: 5px;
 }
 
 #new {
@@ -83,6 +84,7 @@ table {
   border-spacing: 10px;
   word-break: break-all;
   border-collapse: collapse;
+  text-align: center;
 }
 
 thead {
@@ -97,12 +99,12 @@ tbody tr td {
   vertical-align: text-top;
   padding: 6px;
   max-width: 50px;
+  text-align: center;
 }
 
 thead tr th {
   padding: 5px;
-  text-align: start;
-  margin-bottom: 50px;
+  text-align: center;
 }
 
 tbody tr {
@@ -110,7 +112,7 @@ tbody tr {
 }
 
 thead tr th.acao {
-  width: 100px!important;
+  width: 300px!important;
   text-align: center;
 }
 
@@ -165,6 +167,20 @@ tbody tr td.acao {
   align-items: center;
   justify-content: center;
 }
+
+.modal-container-edit{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .modal {
   display: flex;
@@ -235,4 +251,51 @@ td button i {
 
 td button i:first-child {
   margin-right: 10px;
+}
+
+.buttonDelete{
+  display: none;
+}
+
+.m-id{
+  display: none;
+}
+
+h2{
+  color: #ffd700;
+}
+
+.chooseTable{
+  padding-top: 10vh;
+  text-align: center;
+
+}
+
+.chooseButton{
+  padding: 15px 100px;
+  margin: 0px 50px;
+  font-size: 20px;
+  vertical-align: top;
+  border-radius: 10px;
+}
+
+.chooseButton:hover{
+  background-color: lightgray;
+}
+
+.chooseButton:active{
+  background-color: gray;
+}
+
+#buttonFunc{
+  background-color: gray;
+}
+
+#divIngressos{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 3vh;
+  padding-bottom: 26%;
 }
