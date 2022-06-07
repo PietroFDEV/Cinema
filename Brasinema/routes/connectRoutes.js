@@ -690,10 +690,16 @@ router.post("/admin-loggedM", function(req,res){
         if(erro){
             throw erro;
         }
-        res.render('indexAdmin', { 
-            listaFuncionarios: funcionarios,
+        db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexAdmin', { 
+                listaFuncionarios: funcionarios,
+                listaIngressos: ingressos
+            });
         });
-    })
+    });
 })
 
 router.post("/admin-loggedP", function(req,res){
@@ -708,10 +714,16 @@ router.post("/admin-loggedP", function(req,res){
         if(erro){
             throw erro;
         }
-        res.render('indexAdmin', { 
-            listaFuncionarios: funcionarios,
+        db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexAdmin', { 
+                listaFuncionarios: funcionarios,
+                listaIngressos: ingressos
+            });
         });
-    })
+    });
 })
 
 router.post("/admin-loggedE", function(req,res){
@@ -739,11 +751,16 @@ router.post("/admin-loggedE", function(req,res){
         if(erro){
             throw erro;
         }
-        res.render('indexAdmin', { 
-            listaFuncionarios: funcionarios,
+        db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
+            if(erro){
+                throw erro;
+            }
+            res.render('indexAdmin', { 
+                listaFuncionarios: funcionarios,
+                listaIngressos: ingressos
+            });
         });
-    })
-
+    });
 });
 
 
