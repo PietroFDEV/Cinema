@@ -4,6 +4,7 @@ function abreLinha1(){
 
     if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
+        conteudo.style.animation = 'navLinkFade 0.9s ease forwards ';
         seta.src = "imagens/overlay/arrowup.png";
     }
     else{
@@ -19,6 +20,7 @@ function abreLinha2(){
 
     if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
+        conteudo.style.animation = 'navLinkFade 0.9s ease forwards ';
         seta.src = "imagens/overlay/arrowup.png";
     }
     else{
@@ -34,6 +36,7 @@ function abreLinha3(){
 
     if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
+        conteudo.style.animation = 'navLinkFade 0.9s ease forwards ';
         seta.src = "imagens/overlay/arrowup.png";
     }
     else{
@@ -49,6 +52,7 @@ function abreLinha4(){
 
     if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
+        conteudo.style.animation = 'navLinkFade 0.9s ease forwards ';
         seta.src = "imagens/overlay/arrowup.png";
     }
     else{
@@ -64,6 +68,7 @@ function abreLinha5(){
 
     if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
+        conteudo.style.animation = 'navLinkFade 0.9s ease forwards ';
         seta.src = "imagens/overlay/arrowup.png";
     }
     else{
@@ -79,6 +84,7 @@ function abreLinha6(){
 
     if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
+        conteudo.style.animation = 'navLinkFade 0.9s ease forwards ';
         seta.src = "imagens/overlay/arrowup.png";
     }
     else{
@@ -94,6 +100,7 @@ function abreLinha7(){
 
     if (seta.src.indexOf('imagens/overlay/arrowdowntrue.png')!= -1) {
         conteudo.style.display = 'block';
+        conteudo.style.animation = 'navLinkFade 0.9s ease forwards ';
         seta.src = "imagens/overlay/arrowup.png";
     }
     else{
@@ -102,3 +109,6 @@ function abreLinha7(){
     }
 
 }
+
+
+/*--------------------- mamae ta braba ---------------------*/
