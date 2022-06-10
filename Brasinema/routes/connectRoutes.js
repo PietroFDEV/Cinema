@@ -660,7 +660,9 @@ router.post("/admin-logged", function(req,res){
                 if(erro){
                     throw erro;
                 }
-                db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
+                db.query(`SELECT I.sessaoId, I.nome, I.cpf, I.email,  DATE_FORMAT(I.mes, "%d-%m-%Y") as 'Date', 
+                CASE WHEN I.idFilial = 1 THEN "Paraná" WHEN I.idFilial = 2 THEN "São Paulo" END as 'Filial'
+                FROM dbCinema.ingressos as I ORDER BY I.ingressoId; `, function(erro,ingressos){
                     if(erro){
                         throw erro;
                     }
