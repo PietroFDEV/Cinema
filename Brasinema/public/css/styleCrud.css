@@ -293,7 +293,7 @@ h2{
 
 #divIngressos{
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: center;
   padding-top: 3vh;

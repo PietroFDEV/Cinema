@@ -39,7 +39,8 @@
               <th class="acao">Função</th>
               <th class="acao">Salário</th>
               <th class="acao">Data Contratação</th>
-              <th class="acao">Filial</th>            
+              <th class="acao">Filial</th>
+              <th class="acao">Contrato</th>        
               <th class="acao">Editar</th>
               <th class="acao">Excluir</th>
             </tr>
@@ -49,8 +50,9 @@
             <td><%= item.cpfFuncionario %></td>
             <td><%= item.cargoFuncionario %></td>
             <td>R$ <%= item.salarioFuncionario %></td>
-            <td><%= item.mesContratoAtivo %></td>
-            <td><%= item.idFilial %></td>
+            <td><%= item.Date %></td>
+            <td><%= item.Filial %></td>
+            <td><%= item.Contrato %></td>
             <td class="acao">
               <button onclick="openButtonEdit<%= item.idFuncionario %>()">
                 <i class='bx bx-edit' ></i>
@@ -181,8 +183,8 @@
             <td><%= item.nome %></td>
             <td><%= item.cpf %></td>
             <td><%= item.email %></td>
-            <td><%= item.mes %></td>
-            <td><%= item.idFilial %></td>
+            <td><%= item.Date %></td>
+            <td><%= item.Filial %></td>
             <!--
             <td class="acao">
               <button onclick="openButtonEdit<%= item.idFuncionario %>()">
