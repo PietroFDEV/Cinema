@@ -666,10 +666,26 @@ router.post("/admin-logged", function(req,res){
                     if(erro){
                         throw erro;
                     }
-                    res.render('indexAdmin', { 
-                        listaFuncionarios: funcionarios,
-                        listaIngressos: ingressos
-                    });
+                    db.query(`SELECT (SUM(f.salarioFuncionario)) as 'Total_Salarios_Funcionarios'
+                    FROM funcionarios as f 
+                    WHERE MONTH(F.mesContratoAtivo) = '06'; `, function(erro,salario){
+                        if(erro){
+                            throw erro;
+                        }
+                            db.query(`SELECT (COUNT(I.ingressoId) * 20) as 'Ganhos' 
+                            FROM dbCinema.ingressos as I
+                            WHERE MONTH(I.mes) = '06'; `, function(erro,ingressoC){
+                                if(erro){
+                                    throw erro;
+                                }
+                            res.render('indexAdmin', { 
+                                listaFuncionarios: funcionarios,
+                                listaIngressos: ingressos,
+                                listaSalario: salario,
+                                listaIngresso: ingressoC
+                            });
+                        });  
+                    });   
                 });
             });
         }

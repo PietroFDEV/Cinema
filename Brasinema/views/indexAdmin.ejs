@@ -27,6 +27,9 @@
     <div class="container">
       <div class="header">
         <span>Cadastro de Funcionários</span>
+        <% for(item of listaSalario){ %>
+        <p>Total salario do mes 06: R$ <%= item.Total_Salarios_Funcionarios %></p>
+        <% } %>
         <button onclick="openModal()" id="new">Incluir</i></button>
       </div>
 
@@ -161,6 +164,9 @@
     <div class="container">
       <div class="header">
         <span>Ingressos</span>
+        <% for(item of listaIngresso){ %>
+          <p>Total ganhos do mes 06: R$ <%= item.Ganhos %></p>
+          <% } %>
         <!--<button onclick="openModal()" id="new">Incluir</i></button>-->
       </div>
 
