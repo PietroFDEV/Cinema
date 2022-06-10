@@ -653,7 +653,10 @@ router.post("/admin-logged", function(req,res){
         }
 
         if(user == "admin" && password == "12345"){
-            db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
+            db.query(`SELECT F.nomeFuncionario, F.cpfFuncionario, F.cargoFuncionario , F.salarioFuncionario, DATE_FORMAT(F.mesContratoAtivo, "%d-%m-%Y") as 'Date', 
+            CASE WHEN F.idFilial = 1 THEN "Paraná" WHEN F.idFilial = 2 THEN "São Paulo" END as 'Filial',
+            CASE WHEN F.contratoAtivo = 1 THEN "Ativo" WHEN F.contratoAtivo = 2 THEN "Inativo" END as 'Contrato'
+            FROM dbCinema.funcionarios as F ORDER BY salarioFuncionario`, function(erro,funcionarios){
                 if(erro){
                     throw erro;
                 }
