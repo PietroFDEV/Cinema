@@ -132,7 +132,7 @@ router.get("/homem-aranha", function(req,res) {
         if(erro){
             throw erro;
         }
-        db.query(`SELECT * FROM dbCinema.sessao WHERE filmeId="2" AND idFilial="`+filialN+`"`, function(erro,resultadoSessao){
+        db.query(`SELECT S.tipoFilme, S.numeroSala, S.horario, MONTH(S.mes) as Mes, DAY(S.mes) as Dia  FROM dbCinema.sessao as S WHERE filmeId="2" AND idFilial="`+filialN+`";`, function(erro,resultadoSessao){
             if(erro){
                 throw erro;
             }
@@ -653,10 +653,12 @@ router.post("/admin-logged", function(req,res){
         }
 
         if(user == "admin" && password == "12345"){
-            db.query(`SELECT F.nomeFuncionario, F.cpfFuncionario, F.cargoFuncionario , F.salarioFuncionario, DATE_FORMAT(F.mesContratoAtivo, "%d-%m-%Y") as 'Date', 
-            CASE WHEN F.idFilial = 1 THEN "Paraná" WHEN F.idFilial = 2 THEN "São Paulo" END as 'Filial',
-            CASE WHEN F.contratoAtivo = 1 THEN "Ativo" WHEN F.contratoAtivo = 2 THEN "Inativo" END as 'Contrato'
-            FROM dbCinema.funcionarios as F ORDER BY salarioFuncionario`, function(erro,funcionarios){
+            var mesFuncionario = localStorage.getItem('mesFuncionario');
+
+    db.query(`SELECT F.idFuncionario, F.nomeFuncionario, F.cpfFuncionario, F.cargoFuncionario , F.salarioFuncionario, DATE_FORMAT(F.mesContratoAtivo, "%d-%m-%Y") as 'Date', 
+    CASE WHEN F.idFilial = 1 THEN "Paraná" WHEN F.idFilial = 2 THEN "São Paulo" END as 'Filial',
+    CASE WHEN F.contratoAtivo = 1 THEN "Ativo" WHEN F.contratoAtivo = 2 THEN "Inativo" END as 'Contrato'
+    FROM dbCinema.funcionarios as F ORDER BY salarioFuncionario;`, function(erro,funcionarios){
                 if(erro){
                     throw erro;
                 }
@@ -674,7 +676,7 @@ router.post("/admin-logged", function(req,res){
                         }
                             db.query(`SELECT (COUNT(I.ingressoId) * 20) as 'Ganhos' 
                             FROM dbCinema.ingressos as I
-                            WHERE MONTH(I.mes) = '06'; `, function(erro,ingressoC){
+                            WHERE MONTH(I.mes) = '`+mesFuncionario+`'; `, function(erro,ingressoC){
                                 if(erro){
                                     throw erro;
                                 }
@@ -682,7 +684,8 @@ router.post("/admin-logged", function(req,res){
                                 listaFuncionarios: funcionarios,
                                 listaIngressos: ingressos,
                                 listaSalario: salario,
-                                listaIngresso: ingressoC
+                                listaIngresso: ingressoC,
+                                mesSelecionado: mesFuncionario
                             });
                         });  
                     });   
@@ -703,48 +706,96 @@ router.post("/admin-logged", function(req,res){
 
 //rotas para controle do admin
 router.post("/admin-loggedM", function(req,res){
-    const idFunc = req.body.buttonDelete;
+    const cpfFunc = req.body.buttonDelete;
 
-    db.query(`DELETE FROM dbCinema.funcionarios WHERE idFuncionario="`+idFunc+`"`)
+    db.query(`DELETE FROM dbCinema.funcionarios WHERE cpfFuncionario="`+cpfFunc+`"`)
 
-    db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
-        if(erro){
-            throw erro;
-        }
-        db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
-            if(erro){
-                throw erro;
-            }
-            res.render('indexAdmin', { 
-                listaFuncionarios: funcionarios,
-                listaIngressos: ingressos
+    var mesFuncionario = localStorage.getItem('mesFuncionario');
+
+    db.query(`SELECT F.idFuncionario, F.nomeFuncionario, F.cpfFuncionario, F.cargoFuncionario , F.salarioFuncionario, DATE_FORMAT(F.mesContratoAtivo, "%d-%m-%Y") as 'Date', 
+    CASE WHEN F.idFilial = 1 THEN "Paraná" WHEN F.idFilial = 2 THEN "São Paulo" END as 'Filial',
+    CASE WHEN F.contratoAtivo = 1 THEN "Ativo" WHEN F.contratoAtivo = 2 THEN "Inativo" END as 'Contrato'
+    FROM dbCinema.funcionarios as F ORDER BY salarioFuncionario;`, function(erro,funcionarios){
+                if(erro){
+                    throw erro;
+                }
+                db.query(`SELECT I.sessaoId, I.nome, I.cpf, I.email,  DATE_FORMAT(I.mes, "%d-%m-%Y") as 'Date', 
+                CASE WHEN I.idFilial = 1 THEN "Paraná" WHEN I.idFilial = 2 THEN "São Paulo" END as 'Filial'
+                FROM dbCinema.ingressos as I ORDER BY I.ingressoId; `, function(erro,ingressos){
+                    if(erro){
+                        throw erro;
+                    }
+                    db.query(`SELECT (SUM(f.salarioFuncionario)) as 'Total_Salarios_Funcionarios'
+                    FROM funcionarios as f 
+                    WHERE MONTH(F.mesContratoAtivo) = '06'; `, function(erro,salario){
+                        if(erro){
+                            throw erro;
+                        }
+                            db.query(`SELECT (COUNT(I.ingressoId) * 20) as 'Ganhos' 
+                            FROM dbCinema.ingressos as I
+                            WHERE MONTH(I.mes) = '`+mesFuncionario+`'; `, function(erro,ingressoC){
+                                if(erro){
+                                    throw erro;
+                                }
+                            res.render('indexAdmin', { 
+                                listaFuncionarios: funcionarios,
+                                listaIngressos: ingressos,
+                                listaSalario: salario,
+                                listaIngresso: ingressoC,
+                                mesSelecionado: mesFuncionario
+                            });
+                        });  
+                    });   
+                });
             });
-        });
-    });
 })
 
 router.post("/admin-loggedP", function(req,res){
-    db.query(`INSERT INTO dbCinema.funcionarios(nomeFuncionario,cpfFuncionario,cargoFuncionario,salarioFuncionario,mesContratoAtivo,idFilial) VALUES (?,?,?,?,?,?)`,
-    [req.body.nomeFunc, req.body.cpfFunc, req.body.funcaoFunc, req.body.salarioFunc, req.body.dataFunc, req.body.filialFunc], function(erro){
+    db.query(`INSERT INTO dbCinema.funcionarios(nomeFuncionario,cpfFuncionario,cargoFuncionario,salarioFuncionario,mesContratoAtivo,idFilial,contratoAtivo) VALUES (?,?,?,?,?,?,?)`,
+    [req.body.nomeFunc, req.body.cpfFunc, req.body.funcaoFunc, req.body.salarioFunc, req.body.dataFunc, req.body.filialFunc, req.body.contratoAtivo], function(erro){
         if(erro){
             res.status(200).send('Erro: ' + erro)
         }
     });
 
-    db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
-        if(erro){
-            throw erro;
-        }
-        db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
-            if(erro){
-                throw erro;
-            }
-            res.render('indexAdmin', { 
-                listaFuncionarios: funcionarios,
-                listaIngressos: ingressos
+    var mesFuncionario = localStorage.getItem('mesFuncionario');
+
+    db.query(`SELECT F.idFuncionario, F.nomeFuncionario, F.cpfFuncionario, F.cargoFuncionario , F.salarioFuncionario, DATE_FORMAT(F.mesContratoAtivo, "%d-%m-%Y") as 'Date', 
+    CASE WHEN F.idFilial = 1 THEN "Paraná" WHEN F.idFilial = 2 THEN "São Paulo" END as 'Filial',
+    CASE WHEN F.contratoAtivo = 1 THEN "Ativo" WHEN F.contratoAtivo = 2 THEN "Inativo" END as 'Contrato'
+    FROM dbCinema.funcionarios as F ORDER BY salarioFuncionario;`, function(erro,funcionarios){
+                if(erro){
+                    throw erro;
+                }
+                db.query(`SELECT I.sessaoId, I.nome, I.cpf, I.email,  DATE_FORMAT(I.mes, "%d-%m-%Y") as 'Date', 
+                CASE WHEN I.idFilial = 1 THEN "Paraná" WHEN I.idFilial = 2 THEN "São Paulo" END as 'Filial'
+                FROM dbCinema.ingressos as I ORDER BY I.ingressoId; `, function(erro,ingressos){
+                    if(erro){
+                        throw erro;
+                    }
+                    db.query(`SELECT (SUM(f.salarioFuncionario)) as 'Total_Salarios_Funcionarios'
+                    FROM funcionarios as f 
+                    WHERE MONTH(F.mesContratoAtivo) = '06'; `, function(erro,salario){
+                        if(erro){
+                            throw erro;
+                        }
+                            db.query(`SELECT (COUNT(I.ingressoId) * 20) as 'Ganhos' 
+                            FROM dbCinema.ingressos as I
+                            WHERE MONTH(I.mes) = '`+mesFuncionario+`'; `, function(erro,ingressoC){
+                                if(erro){
+                                    throw erro;
+                                }
+                            res.render('indexAdmin', { 
+                                listaFuncionarios: funcionarios,
+                                listaIngressos: ingressos,
+                                listaSalario: salario,
+                                listaIngresso: ingressoC,
+                                mesSelecionado: mesFuncionario
+                            });
+                        });  
+                    });   
+                });
             });
-        });
-    });
 })
 
 router.post("/admin-loggedE", function(req,res){
@@ -753,35 +804,139 @@ router.post("/admin-loggedE", function(req,res){
     var cpf = req.body.cpfFunc;
     var funcao = req.body.funcaoFunc;
     var salario = req.body.salarioFunc;
-    var data = req.body.dataFunc;
     var filial = req.body.filialFunc; 
+    var ativo = req.body.contratoAtivo;
     db.query(`UPDATE dbCinema.funcionarios 
         SET nomeFuncionario = "`+nome+`", 
         cpfFuncionario = "`+cpf+`", 
         cargoFuncionario = "`+funcao+`", 
-        salarioFuncionario = "`+salario+`", 
-        mesContratoAtivo = "`+data+`", 
-        idFilial = "`+filial+`"
+        salarioFuncionario = "`+salario+`",  
+        idFilial = "`+filial+`",
+        contratoAtivo = "`+ativo+`"
         WHERE idFuncionario = "`+id+`"`,function(erro){
         if(erro){
             res.status(200).send('Erro: ' + erro)
         }
     });
 
-    db.query(`SELECT * FROM dbCinema.funcionarios ORDER BY salarioFuncionario`, function(erro,funcionarios){
-        if(erro){
-            throw erro;
-        }
-        db.query(`SELECT * FROM dbCinema.ingressos ORDER BY IngressoId`, function(erro,ingressos){
-            if(erro){
-                throw erro;
-            }
-            res.render('indexAdmin', { 
-                listaFuncionarios: funcionarios,
-                listaIngressos: ingressos
+    var mesFuncionario = localStorage.getItem('mesFuncionario');
+
+    db.query(`SELECT F.idFuncionario, F.nomeFuncionario, F.cpfFuncionario, F.cargoFuncionario , F.salarioFuncionario, DATE_FORMAT(F.mesContratoAtivo, "%d-%m-%Y") as 'Date', 
+    CASE WHEN F.idFilial = 1 THEN "Paraná" WHEN F.idFilial = 2 THEN "São Paulo" END as 'Filial',
+    CASE WHEN F.contratoAtivo = 1 THEN "Ativo" WHEN F.contratoAtivo = 2 THEN "Inativo" END as 'Contrato'
+    FROM dbCinema.funcionarios as F ORDER BY salarioFuncionario;`, function(erro,funcionarios){
+                if(erro){
+                    throw erro;
+                }
+                db.query(`SELECT I.sessaoId, I.nome, I.cpf, I.email,  DATE_FORMAT(I.mes, "%d-%m-%Y") as 'Date', 
+                CASE WHEN I.idFilial = 1 THEN "Paraná" WHEN I.idFilial = 2 THEN "São Paulo" END as 'Filial'
+                FROM dbCinema.ingressos as I ORDER BY I.ingressoId; `, function(erro,ingressos){
+                    if(erro){
+                        throw erro;
+                    }
+                    db.query(`SELECT (SUM(f.salarioFuncionario)) as 'Total_Salarios_Funcionarios'
+                    FROM funcionarios as f 
+                    WHERE MONTH(F.mesContratoAtivo) = '06'; `, function(erro,salario){
+                        if(erro){
+                            throw erro;
+                        }
+                            db.query(`SELECT (COUNT(I.ingressoId) * 20) as 'Ganhos' 
+                            FROM dbCinema.ingressos as I
+                            WHERE MONTH(I.mes) = '`+mesFuncionario+`'; `, function(erro,ingressoC){
+                                if(erro){
+                                    throw erro;
+                                }
+                            res.render('indexAdmin', { 
+                                listaFuncionarios: funcionarios,
+                                listaIngressos: ingressos,
+                                listaSalario: salario,
+                                listaIngresso: ingressoC,
+                                mesSelecionado: mesFuncionario
+                            });
+                        });  
+                    });   
+                });
             });
-        });
-    });
+});
+
+router.post("/admin-loggedI", function(req,res){
+    var mes = req.body.mes;
+    if(mes == "1"){
+        localStorage.setItem('mesFuncionario', '1');
+    }
+    else if(mes == "2"){
+        localStorage.setItem('mesFuncionario', '2');
+    }
+    else if(mes == "3"){
+        localStorage.setItem('mesFuncionario', '3');
+    }
+    else if(mes == "4"){
+        localStorage.setItem('mesFuncionario', '4');
+    }
+    else if(mes == "5"){
+        localStorage.setItem('mesFuncionario', '5');
+    }
+    else if(mes == "6"){
+        localStorage.setItem('mesFuncionario', '6');
+    }
+    else if(mes == "7"){
+        localStorage.setItem('mesFuncionario', '7');
+    }
+    else if(mes == "8"){
+        localStorage.setItem('mesFuncionario', '8');
+    }
+    else if(mes == "9"){
+        localStorage.setItem('mesFuncionario', '9');
+    }
+    else if(mes == "10"){
+        localStorage.setItem('mesFuncionario', '10');
+    }
+    else if(mes == "11"){
+        localStorage.setItem('mesFuncionario', '11');
+    }
+    else if(mes == "12"){
+        localStorage.setItem('mesFuncionario', '12');
+    }
+
+    var mesFuncionario = localStorage.getItem('mesFuncionario');
+
+    db.query(`SELECT F.idFuncionario, F.nomeFuncionario, F.cpfFuncionario, F.cargoFuncionario , F.salarioFuncionario, DATE_FORMAT(F.mesContratoAtivo, "%d-%m-%Y") as 'Date', 
+    CASE WHEN F.idFilial = 1 THEN "Paraná" WHEN F.idFilial = 2 THEN "São Paulo" END as 'Filial',
+    CASE WHEN F.contratoAtivo = 1 THEN "Ativo" WHEN F.contratoAtivo = 2 THEN "Inativo" END as 'Contrato'
+    FROM dbCinema.funcionarios as F ORDER BY salarioFuncionario;`, function(erro,funcionarios){
+                if(erro){
+                    throw erro;
+                }
+                db.query(`SELECT I.sessaoId, I.nome, I.cpf, I.email,  DATE_FORMAT(I.mes, "%d-%m-%Y") as 'Date', 
+                CASE WHEN I.idFilial = 1 THEN "Paraná" WHEN I.idFilial = 2 THEN "São Paulo" END as 'Filial'
+                FROM dbCinema.ingressos as I ORDER BY I.ingressoId; `, function(erro,ingressos){
+                    if(erro){
+                        throw erro;
+                    }
+                    db.query(`SELECT (SUM(f.salarioFuncionario)) as 'Total_Salarios_Funcionarios'
+                    FROM funcionarios as f 
+                    WHERE MONTH(F.mesContratoAtivo) = '06'; `, function(erro,salario){
+                        if(erro){
+                            throw erro;
+                        }
+                            db.query(`SELECT (COUNT(I.ingressoId) * 20) as 'Ganhos' 
+                            FROM dbCinema.ingressos as I
+                            WHERE MONTH(I.mes) = '`+mesFuncionario+`'; `, function(erro,ingressoC){
+                                if(erro){
+                                    throw erro;
+                                }
+                            res.render('indexAdmin', { 
+                                listaFuncionarios: funcionarios,
+                                listaIngressos: ingressos,
+                                listaSalario: salario,
+                                listaIngresso: ingressoC,
+                                mesSelecionado: mesFuncionario
+                            });
+                        });  
+                    });   
+                });
+            });
+    
 });
 
 

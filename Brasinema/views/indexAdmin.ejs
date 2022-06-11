@@ -27,11 +27,35 @@
     <div class="container">
       <div class="header">
         <span>Cadastro de Funcionários</span>
-        <% for(item of listaSalario){ %>
-        <p>Total salario do mes 06: R$ <%= item.Total_Salarios_Funcionarios %></p>
-        <% } %>
         <button onclick="openModal()" id="new">Incluir</i></button>
       </div>
+
+      <% for(item of listaSalario){ %>
+        <div class="ganhosIngresso">
+          <p class="totalValor">Total gastos do mês</p>
+          <select class="selectDate">
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+            <option value="9">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select> 
+          <p class="totalValor">de</p>
+          <select class="selectDate">
+            <option value="2022">2022</option>
+          </select> 
+          <p class="totalValor">: R$<%= item.Total_Salarios_Funcionarios%></p>
+        </div>
+        
+        
+      <% } %>
 
       <div class="divTable">
         <table>
@@ -63,8 +87,8 @@
             </td>
             <td class="acao">
               <form action="/admin-loggedM" method="POST">
-                <input type="text" class="buttonDelete" name="buttonDelete" value="<%= item.idFuncionario %>">
-                <button type="submit" onclick="openButtonDrop<%= item.idFuncionario %>">
+                <input type="text" class="buttonDelete" name="buttonDelete" value="<%= item.cpfFuncionario %>">
+                <button type="submit" onclick="openButtonDrop<%= item.cpfFuncionario %>">
                   <i class='bx bx-trash'></i>
                 </button>
               </form>
@@ -75,7 +99,7 @@
           <div id="modal-container<%= item.idFuncionario %>" class="modal-container-edit">
             <div class="modal">
               <h2>Editar Funcionário</h2>
-              <form method="POST" action="/admin-loggedE">
+              <form method="POST" action="/admin-loggedE" id="editForm">
                 <input class="m-id" type="text" name="idFunc" value="<%= item.idFuncionario %>"/>
 
                 <label>Nome</label>
@@ -90,13 +114,25 @@
                 <label>Salário</label>
                 <input type="number" required name="salarioFunc" value="<%= item.salarioFuncionario %>"/>
 
+                <!--
                 <label>Data de Contratação</label>
-                <input type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required name="dataFunc" value="<%= item.mesContratoAtivo %>"/>
+                <input type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required name="dataFunc" value="<%= item.Date %>"/>
+                -->
 
                 <label>Filial</label>
-                <input type="number" required name="filialFunc" value="<%= item.idFilial %>"/>
+                <select id="filialInput" name="filialFunc" class="contratoInput">
+                  <option value='1' selected="selected">Paraná</option>
+                  <option value='2'>São Paulo</option>
+                </select>
+
+                <label>Situação Contrato</label>
+                <select id="contratoInput" name="contratoAtivo" class="contratoInput">
+                  <option value='1' selected="selected">Ativo</option>
+                  <option value='2'>Inativo</option>
+                </select>
 
                 <button id="btnSalvar" type="submit">Salvar</button>
+
               </form>
             </div>
           </div>
@@ -149,6 +185,8 @@
 
             <label for="m-filial">Filial</label>
             <input id="m-filial" type="number" required name="filialFunc"/>
+
+            <input id="m-ativo" class="m-id" type="text" required name="contratoAtivo" value="1"/>
 
             <button id="btnSalvar" type="submit">Salvar</button>
           </form>
@@ -164,11 +202,42 @@
     <div class="container">
       <div class="header">
         <span>Ingressos</span>
-        <% for(item of listaIngresso){ %>
-          <p>Total ganhos do mes 06: R$ <%= item.Ganhos %></p>
-          <% } %>
         <!--<button onclick="openModal()" id="new">Incluir</i></button>-->
       </div>
+
+      <% for(item of listaIngresso){ %>
+        <div class="ganhosIngresso">
+          <p class="totalValor">Total ganhos do mês</p>
+          <form method="POST" action="/admin-loggedI" id="monthNumber" style="display: inline-block;">
+            <select class="selectDate" name="mes" onchange="changeMonth()" id="selectMes">
+              <option value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select> 
+          </form>
+          
+          <p class="totalValor">de</p>
+          <select class="selectDate">
+            <option value="2022">2022</option>
+          </select> 
+          <p class="totalValor">: R$<%= item.Ganhos%></p>
+        </div>
+
+        <script>
+          document.getElementById('selectMes').value = "<%= mesSelecionado %>"
+        </script>
+        
+        
+      <% } %>
 
       <div class="divTable">
         <table>
@@ -180,8 +249,6 @@
               <th class="acao">E-mail</th>
               <th class="acao">Data</th>
               <th class="acao">Filial</th>            
-              <!--<th class="acao">Editar</th>
-              <th class="acao">Excluir</th> -->
             </tr>
             <tr>
             <% for(item of listaIngressos){ %>
@@ -191,109 +258,11 @@
             <td><%= item.email %></td>
             <td><%= item.Date %></td>
             <td><%= item.Filial %></td>
-            <!--
-            <td class="acao">
-              <button onclick="openButtonEdit<%= item.idFuncionario %>()">
-                <i class='bx bx-edit' ></i>
-              </button>
-            </td>
-            <td class="acao">
-              <form action="/admin-loggedM" method="POST">
-                <input type="text" class="buttonDelete" name="buttonDelete" value="<%= item.idFuncionario %>">
-                <button type="submit" onclick="openButtonDrop<%= item.idFuncionario %>">
-                  <i class='bx bx-trash'></i>
-                </button>
-              </form>
-              
-            </td>
-          -->
-          </tr>
-
-          <div id="modal-container<%= item.idFuncionario %>" class="modal-container-edit">
-            <div class="modal">
-              <h2>Editar Funcionário</h2>
-              <form method="POST" action="/admin-loggedE">
-                <input class="m-id" type="text" name="idFunc" value="<%= item.idFuncionario %>"/>
-
-                <label>Nome</label>
-                <input type="text" required name="nomeFunc" value="<%= item.nomeFuncionario %>"/>
-
-                <label>CPF</label>
-                <input type="text" required name="cpfFunc" value="<%= item.cpfFuncionario %>"/>
-
-                <label>Função</label>
-                <input type="text" required name="funcaoFunc" value="<%= item.cargoFuncionario %>"/>
-
-                <label>Salário</label>
-                <input type="number" required name="salarioFunc" value="<%= item.salarioFuncionario %>"/>
-
-                <label>Data de Contratação</label>
-                <input type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required name="dataFunc" value="<%= item.mesContratoAtivo %>"/>
-
-                <label>Filial</label>
-                <input type="number" required name="filialFunc" value="<%= item.idFilial %>"/>
-
-                <button id="btnSalvar" type="submit">Salvar</button>
-              </form>
-            </div>
-          </div>
-
-
-          <script>
-            var modalEdit = document.getElementById('modal-container<%= item.idFuncionario %>');
-
-            function openButtonEdit<%= item.idFuncionario %>(){
-              document.getElementById('modal-container<%= item.idFuncionario %>').style.display = "flex";
-            }
-
-            modalEdit.onclick = e => {
-              if (e.target.className.indexOf('modal-container-edit') !== -1) {
-                document.getElementById('modal-container<%= item.idFuncionario %>').style.display = "none";
-              }
-            }
-
-          </script>
-
-
-          <% } %>
-        
+            </tr>
+            <% } %>
           </thead>
-          <tbody>
-          </tbody>
         </table>
       </div>
-
-      <div id="modal-container" class="modal-container">
-        <div class="modal">
-          <h2>Incluir Novo Funcionário</h2>
-          <form method="POST" action="/admin-loggedP">
-            <input class="m-id" type="text" name="idFunc"/>
-
-            <label for="m-nome">Nome</label>
-            <input id="m-nome" type="text" required name="nomeFunc"/>
-
-            <label for="m-cpf">CPF</label>
-            <input id="m-cpf" type="text" required name="cpfFunc"/>
-    
-            <label for="m-funcao">Função</label>
-            <input id="m-funcao" type="text" required name="funcaoFunc"/>
-    
-            <label for="m-salario">Salário</label>
-            <input id="m-salario" type="number" required name="salarioFunc"/>
-
-            <label for="m-dataContratacao">Data de Contratação</label>
-            <input id="m-dataContratacao" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" type="date" required name="dataFunc" />
-
-            <label for="m-filial">Filial</label>
-            <input id="m-filial" type="number" required name="filialFunc"/>
-
-            <button id="btnSalvar" type="submit">Salvar</button>
-          </form>
-        </div>
-      </div>
-  
-    </div>
-  </div>
 
   
     <script src="../public/scripts/crud.js"></script>

@@ -10,6 +10,7 @@ const sFuncao = document.querySelector('#m-funcao')
 const sSalario = document.querySelector('#m-salario')
 const sContratacao = document.querySelector('#m-dataContratacao')
 const sFilial = document.querySelector('#m-filial')
+const sAtivo = document.querySelector('#m-ativo')
 const btnSalvar = document.querySelector('#btnSalvar')
 
 let itens
@@ -38,6 +39,7 @@ function openModal(edit = false, index = 0) {
     sSalario.value = ''
     sContratacao.value = ''
     sFilial.value = ''
+    sAtivo.value = ''
   }
   
 }
@@ -128,8 +130,26 @@ function openIngressos(){
   document.getElementById("buttonFunc").style.backgroundColor = "lightgray";
 }
 
+var url = document.URL;
+
+if(url == "http://localhost:8081/admin-loggedI"){
+  megadiv.style.display = "none";
+  divIngressos.style.display = "flex";
+  document.getElementById("buttonIngressos").style.backgroundColor = "gray";
+  document.getElementById("buttonFunc").style.backgroundColor = "lightgray";
+}
+else if(url == "http://localhost:8081/admin-loggedF"){
+  divIngressos.style.display = "none";
+  megadiv.style.display = "flex";
+  document.getElementById("buttonFunc").style.backgroundColor = "gray";
+  document.getElementById("buttonIngressos").style.backgroundColor = "lightgray";
+}
+
 
 /* ----------- CRUD GANHOS ---------------*/
 
+function changeMonth(){
+  document.getElementById("monthNumber").submit();
+}
 
 
