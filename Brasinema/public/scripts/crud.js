@@ -152,4 +152,8 @@ function changeMonth(){
   document.getElementById("monthNumber").submit();
 }
 
+function changeMonthFuncionario(){
+  document.getElementById("monthNumberFuncionario").submit();
+}
+
 

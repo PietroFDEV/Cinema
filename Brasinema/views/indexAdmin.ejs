@@ -33,20 +33,22 @@
       <% for(item of listaSalario){ %>
         <div class="ganhosIngresso">
           <p class="totalValor">Total gastos do mês</p>
-          <select class="selectDate">
-            <option value="1">01</option>
-            <option value="2">02</option>
-            <option value="3">03</option>
-            <option value="4">04</option>
-            <option value="5">05</option>
-            <option value="6">06</option>
-            <option value="7">07</option>
-            <option value="8">08</option>
-            <option value="9">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select> 
+          <form method="POST" action="/admin-loggedF" id="monthNumberFuncionario" style="display: inline-block;">
+            <select class="selectDate" name="mes" onchange="changeMonthFuncionario()" id="selectMesFuncionario">
+              <option value="1">01</option>
+              <option value="2">02</option>
+              <option value="3">03</option>
+              <option value="4">04</option>
+              <option value="5">05</option>
+              <option value="6">06</option>
+              <option value="7">07</option>
+              <option value="8">08</option>
+              <option value="9">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select> 
+          </form>
           <p class="totalValor">de</p>
           <select class="selectDate">
             <option value="2022">2022</option>
@@ -65,9 +67,10 @@
               <th class="acao">CPF</th>
               <th class="acao">Função</th>
               <th class="acao">Salário</th>
-              <th class="acao">Data Contratação</th>
+              <th class="acao">Contratação</th>
+              <th class="acao">Demissão</th>
               <th class="acao">Filial</th>
-              <th class="acao">Contrato</th>        
+              <th class="acao">Estado Contratual</th>        
               <th class="acao">Editar</th>
               <th class="acao">Excluir</th>
             </tr>
@@ -77,7 +80,8 @@
             <td><%= item.cpfFuncionario %></td>
             <td><%= item.cargoFuncionario %></td>
             <td>R$ <%= item.salarioFuncionario %></td>
-            <td><%= item.Date %></td>
+            <td><%= item.Contratado %></td>
+            <td><%= item.FimContrato %></td>
             <td><%= item.Filial %></td>
             <td><%= item.Contrato %></td>
             <td class="acao">
@@ -114,22 +118,23 @@
                 <label>Salário</label>
                 <input type="number" required name="salarioFunc" value="<%= item.salarioFuncionario %>"/>
 
-                <!--
                 <label>Data de Contratação</label>
-                <input type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required name="dataFunc" value="<%= item.Date %>"/>
-                -->
+                <input type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" required name="dataFunc" value="<%= item.mesContratado %>"/>
 
                 <label>Filial</label>
-                <select id="filialInput" name="filialFunc" class="contratoInput">
-                  <option value='1' selected="selected">Paraná</option>
+                <select name="filialFunc" class="contratoInput" id="selectFilialEdit<%= item.idFuncionario %>">
+                  <option value='1'>Paraná</option>
                   <option value='2'>São Paulo</option>
                 </select>
 
                 <label>Situação Contrato</label>
-                <select id="contratoInput" name="contratoAtivo" class="contratoInput">
-                  <option value='1' selected="selected">Ativo</option>
+                <select id="contratoInput<%= item.idFuncionario %>" name="contratoAtivo" class="contratoInput" onchange="changeContrato<%= item.idFuncionario %>()">
+                  <option value='1'>Ativo</option>
                   <option value='2'>Inativo</option>
                 </select>
+
+                <label for="inputDemissao<%= item.idFuncionario %>">Data de Demissão</label>
+                <input id="inputDemissao<%= item.idFuncionario %>" type="date" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" name="dataFuncDemissao" value="<%= item.mesFimContrato %>"/>
 
                 <button id="btnSalvar" type="submit">Salvar</button>
 
@@ -150,6 +155,28 @@
                 document.getElementById('modal-container<%= item.idFuncionario %>').style.display = "none";
               }
             }
+
+            document.getElementById('selectFilialEdit<%= item.idFuncionario %>').value = "<%= item.idFilial %>"
+            document.getElementById('contratoInput<%= item.idFuncionario %>').value = "<%= item.contratoAtivo %>"
+
+            if(document.getElementById('contratoInput<%= item.idFuncionario %>').value == "1"){
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').style.backgroundColor = "darkgray"
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').readOnly = true;
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').value = null;
+            }
+
+            function changeContrato<%= item.idFuncionario %>(){
+              if(document.getElementById('contratoInput<%= item.idFuncionario %>').value == "2"){
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').style.backgroundColor = "white"
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').readOnly = false;
+              }
+              else if(document.getElementById('contratoInput<%= item.idFuncionario %>').value == "1"){
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').style.backgroundColor = "darkgray"
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').readOnly = true;
+              document.getElementById('inputDemissao<%= item.idFuncionario %>').value = null;
+              }
+            }
+
 
           </script>
 
@@ -184,7 +211,10 @@
             <input id="m-dataContratacao" placeholder="dd-mm-yyyy" min="1997-01-01" max="2030-12-31" type="date" required name="dataFunc" />
 
             <label for="m-filial">Filial</label>
-            <input id="m-filial" type="number" required name="filialFunc"/>
+            <select name="filialFunc" class="contratoInput">
+              <option value='1' selected="selected">Paraná</option>
+              <option value='2'>São Paulo</option>
+            </select>
 
             <input id="m-ativo" class="m-id" type="text" required name="contratoAtivo" value="1"/>
 
@@ -234,6 +264,8 @@
 
         <script>
           document.getElementById('selectMes').value = "<%= mesSelecionado %>"
+
+          document.getElementById('selectMesFuncionario').value = "<%= mesSelecionadoF %>"
         </script>
         
         
